@@ -4,32 +4,19 @@
              x:Class="YAssistant.View.MainPage">
 
     <ContentPage.Content>
-        <StackLayout>
+        <AbsoluteLayout>
+
             <ScrollView>
-                <StackLayout>
-                    <Label Text="First" FontSize="26"/>
-                    <Label Text="Second" FontSize="26"/>
-                    <Label Text="Third" FontSize="26"/>
-                    <Label Text="First" FontSize="26"/>
-                    <Label Text="Second" FontSize="26"/>
-                    <Label Text="Third" FontSize="26"/>
-                    <Label Text="First" FontSize="26"/>
-                    <Label Text="Second" FontSize="26"/>
-                    <Label Text="Third" FontSize="26"/>
-                    <Label Text="First" FontSize="26"/>
-                    <Label Text="Second" FontSize="26"/>
-                    <Label Text="Third" FontSize="26"/>
-                    <Label Text="First" FontSize="26"/>
-                    <Label Text="Second" FontSize="26"/>
-                    <Label Text="Third" FontSize="26"/>
+                <StackLayout x:Name="ActivityListStackLayout">
+                    
                 </StackLayout>
             </ScrollView>
 
-            <StackLayout>
-                <Button Text="Create begunok!" FontSize="Large" BorderWidth="1"
-                    HorizontalOptions="Center" VerticalOptions="CenterAndExpand"
-                    Clicked="CreateBegunokButtonClicked"/>
-            </StackLayout>
-        </StackLayout>
+            <ImageButton x:Name="AddBegunokButton" Source="AddBegunokButton.png"
+                         BackgroundColor="Transparent"
+                         AbsoluteLayout.LayoutFlags="PositionProportional"
+                         AbsoluteLayout.LayoutBounds=".95,.95,80,80"
+                         Clicked="CreateBegunokButtonClicked"/>
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

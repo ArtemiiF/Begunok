@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace YAssistant
+namespace YAssistant.View
 {
     public partial class MainPage : ContentPage
     {
@@ -14,5 +14,11 @@ namespace YAssistant
         {
             InitializeComponent();
         }
+
+        private async void CreateBegunokButtonClicked(object sender, System.EventArgs e)
+        {
+            await Navigation.PushAsync(new CreateBegunokPage());
+        }
+
     }
 }

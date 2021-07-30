@@ -17,9 +17,9 @@ namespace YAssistant.View
             InitializeComponent();
         }
 
-        private async void BackToHomeButtonClicked(object sender, System.EventArgs e)
+        private async void AddBegunokActivityButtonClicked(object sender, System.EventArgs e)
         {
-            await Navigation.PopToRootAsync();
+            await Navigation.PushAsync(new CreateBegunokActivityPage());
         }
     }
 }

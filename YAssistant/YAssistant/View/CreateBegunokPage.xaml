@@ -3,12 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="YAssistant.View.CreateBegunokPage">
     <ContentPage.Content>
-        <AbsoluteLayout>
-            <StackLayout>
-                <Button Text="Back to home!" FontSize="Large" BorderWidth="1"
-                    HorizontalOptions="Center" VerticalOptions="CenterAndExpand"
-                    Clicked="BackToHomeButtonClicked"/>
-            </StackLayout>
+        <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <ScrollView>
+                <StackLayout x:Name="ActivityListStackLayout">
+
+                </StackLayout>
+            </ScrollView>
+
+            <ImageButton Source="AddBegunokActivityButton.png" 
+                BackgroundColor="Transparent"
+                AbsoluteLayout.LayoutFlags="PositionProportional"  
+                AbsoluteLayout.LayoutBounds="0.95,0.95,60,60"                            
+                Clicked="AddBegunokActivityButtonClicked" />
         </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CommonServiceLocator;
 using Xamarin.Forms;
+using YAssistant.ViewModel;
 
 namespace YAssistant.View
 {
@@ -13,12 +9,7 @@ namespace YAssistant.View
         public MainPage()
         {
             InitializeComponent();
+            this.BindingContext = ServiceLocator.Current.GetInstance<MainPageViewModel>();        
         }
-
-        private async void CreateBegunokButtonClicked(object sender, System.EventArgs e)
-        {
-            await Navigation.PushAsync(new CreateBegunokPage());
-        }
-
     }
 }

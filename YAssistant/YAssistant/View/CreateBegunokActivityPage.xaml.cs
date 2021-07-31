@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using CommonServiceLocator;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using YAssistant.ViewModel;
 
 namespace YAssistant.View
 {
@@ -15,6 +11,7 @@ namespace YAssistant.View
         public CreateBegunokActivityPage()
         {
             InitializeComponent();
+            this.BindingContext = ServiceLocator.Current.GetInstance<CreateBegunokActivityPageViewModel>();
         }
     }
 }

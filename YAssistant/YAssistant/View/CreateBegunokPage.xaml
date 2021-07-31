@@ -1,12 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="YAssistant.View.CreateBegunokPage">
+             x:Class="YAssistant.View.CreateBegunokPage"
+             Background="Transparent">
     <ContentPage.Content>
-        <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Background="#272537">
             <ScrollView>
                 <StackLayout x:Name="ActivityListStackLayout">
-
+                    <Label Text="Create Begunok!!" FontSize="Large"/>
                 </StackLayout>
             </ScrollView>
 
@@ -14,7 +15,7 @@
                 BackgroundColor="Transparent"
                 AbsoluteLayout.LayoutFlags="PositionProportional"  
                 AbsoluteLayout.LayoutBounds="0.95,0.95,60,60"                            
-                Clicked="AddBegunokActivityButtonClicked" />
+                Command="{Binding ClickCommand1}" />
         </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

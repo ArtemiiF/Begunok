@@ -21,7 +21,7 @@ namespace YAssistant.UWP
         {
             this.InitializeComponent();
 
-            LoadApplication(new YAssistant.App());
+            LoadApplication(new YAssistant.App(new PlatformModule()));
         }
     }
 }

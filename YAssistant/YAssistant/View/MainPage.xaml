@@ -1,23 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="YAssistant.View.MainPage">
-
+             x:Class="YAssistant.View.MainPage"
+             Background="Transparent">
     <ContentPage.Content>
-        <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-
+        <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Background="#272537">
             <ScrollView>
                 <StackLayout x:Name="ActivityListStackLayout">
-                    
+
                 </StackLayout>
             </ScrollView>
 
             <ImageButton Source="AddBegunokButton.png" 
-            BackgroundColor="Transparent"
-            AbsoluteLayout.LayoutFlags="PositionProportional"  
-            AbsoluteLayout.LayoutBounds=".95,.95,60,60" 
-            Clicked="CreateBegunokButtonClicked" />
-                       
+                BackgroundColor="Transparent"
+                AbsoluteLayout.LayoutFlags="PositionProportional"  
+                AbsoluteLayout.LayoutBounds=".95,.95,60,60" 
+                Command="{Binding ClickCommand}" />
+
         </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

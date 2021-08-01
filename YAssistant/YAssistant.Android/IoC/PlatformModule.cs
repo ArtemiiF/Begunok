@@ -1,5 +1,7 @@
 ﻿using Autofac;
+using YAssistant.Droid.Models;
 using YAssistant.Droid.Services;
+using YAssistant.Models;
 using YAssistant.Services;
 
 namespace YAssistant.Droid.IoC
@@ -11,6 +13,7 @@ namespace YAssistant.Droid.IoC
             base.Load(builder);
 
             builder.RegisterType<NavigationService>().As<INavigationService>();
+            builder.RegisterType<Begunok>().As<IBegunok>();
         }
 
     }

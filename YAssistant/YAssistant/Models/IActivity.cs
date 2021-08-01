@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using Xamarin.Forms;
 
 namespace YAssistant.Models
@@ -7,8 +8,10 @@ namespace YAssistant.Models
     {
         string Name { get; set; }
 
-        DateTime Time { get; set; }
+        TimeSpan Time { get; set; }
 
-        Color ActivityColor { get; set; }
+        Color Color { get; set; }
+
+        int Length { get; }
     }
 }

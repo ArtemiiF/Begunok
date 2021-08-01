@@ -4,6 +4,8 @@ namespace YAssistant.Models
 {
     public interface IBegunok
     {
-        List<IActivity> begunok { get; set; }
+        int ActivityCount { get; set; }
+
+        List<IActivity> Activities { get; set; }
     }
 }

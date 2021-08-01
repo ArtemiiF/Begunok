@@ -6,14 +6,14 @@ namespace YAssistant.ViewModel
 {
     class CreateBegunokPageViewModel : BaseViewModel
     {
-        public ICommand ClickCommand1 { get; private set; }
+        public ICommand ClickCommand { get; private set; }
 
         protected INavigationService NavigationService { get; set; }
 
         public CreateBegunokPageViewModel(INavigationService navigation)
         {
             NavigationService = navigation;
-            ClickCommand1 = new Command(CreateBegunokActivityButtonClicked);
+            ClickCommand = new Command(CreateBegunokActivityButtonClicked);
         }
 
         protected virtual void CreateBegunokActivityButtonClicked()

@@ -4,18 +4,41 @@
              x:Class="YAssistant.View.CreateBegunokPage"
              Background="Transparent">
     <ContentPage.Content>
-        <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Background="#272537">
-            <ScrollView>
-                <StackLayout x:Name="ActivityListStackLayout">
-                    <Label Text="Create Begunok!!" FontSize="Large"/>
+        <Grid BackgroundColor="#272537">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <ScrollView Grid.Row="0">
+
+                <StackLayout>
+                    <Label Text="First" FontSize="Large"/>
+                    <Label Text="Second" FontSize="Large"/>
+                    <Label Text="First" FontSize="Large"/>
+                    <Label Text="Second" FontSize="Large"/>
+                    <Label Text="First" FontSize="Large"/>
+                    <Label Text="Second" FontSize="Large"/>
+                    <Label Text="First" FontSize="Large"/>
+                    <Label Text="Second" FontSize="Large"/>
+                    <Label Text="First" FontSize="Large"/>
+                    <Label Text="Second" FontSize="Large"/>
+                    <Label Text="First" FontSize="Large"/>
+                    <Label Text="Second" FontSize="Large"/>
+                    <Label Text="First" FontSize="Large"/>
+                    <Label Text="Second" FontSize="Large"/>
+                    <Label Text="First" FontSize="Large"/>
+                    <Label Text="Second" FontSize="Large"/>
+                    <Label Text="First" FontSize="Large"/>
+                    <Label Text="Second" FontSize="Large"/>
                 </StackLayout>
             </ScrollView>
 
-            <ImageButton Source="AddBegunokActivityButton.png" 
+            <ImageButton Grid.Row="0" Source="AddBegunokActivityButton.png" 
                 BackgroundColor="Transparent"
-                AbsoluteLayout.LayoutFlags="PositionProportional"  
-                AbsoluteLayout.LayoutBounds="0.95,0.95,60,60"                            
-                Command="{Binding ClickCommand1}" />
-        </AbsoluteLayout>
+                Scale=".18"
+                AnchorX="0.97"
+                AnchorY="1.02"
+                Margin="20"
+                Command="{Binding ClickCommand}" />
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

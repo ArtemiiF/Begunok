@@ -11,12 +11,14 @@
             <ScrollView Grid.Row="0">
 
                 <StackLayout>
-                    <Label Text="Text" FontSize="Large"
-                           VerticalOptions="End" HorizontalOptions="Center"/>
+                    <Label Text="{Binding NameOfCurrentActivity}" FontSize="Large"
+                           VerticalOptions="End" HorizontalOptions="Center" TextColor="LightGray"/>
 
                     <Label Text="{Binding TimeBeforeCurrentActivityEnd}" FontSize="36"
-                           HorizontalOptions="Center"/>
+                           HorizontalOptions="Center" TextColor="LightGray"/>
 
+                    <Label Text="{Binding ActivitesCount}" FontSize="36"
+                           HorizontalOptions="Center" TextColor="LightGray"/>
                     
                 </StackLayout>
             </ScrollView>

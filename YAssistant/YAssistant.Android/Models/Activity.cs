@@ -9,15 +9,17 @@ namespace YAssistant.Droid.Models
     {
         public Activity()
         {
-            Name = "";
+            Name = "Unknown";
             Time = new TimeSpan(0, 0, 0);
             Color = Color.Transparent;
             Length = 0;
+            State = ActivityState.Next;
         }
 
-        public string Name { get ; set; }
+        public string Name { get; set; }
         public TimeSpan Time { get; set; }
         public Color Color { get; set; }
         public int Length { get; private set; }
+        public ActivityState State { get;private set;}
     }
 }

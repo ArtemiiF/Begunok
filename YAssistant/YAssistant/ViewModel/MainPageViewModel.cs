@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
 using Xamarin.Forms;
 using YAssistant.Models;
 using YAssistant.Services;
@@ -13,26 +14,41 @@ namespace YAssistant.ViewModel
 
         private IBegunok Begunok { get; set; }
 
-        public string TimeBeforeCurrentActivityEnd
-        {
-            get
-            {
-                if (Begunok.Activities.Count == 0)
-                    return "1:11";
-                return "0:00";
-            }        
-        }
+        public string ActivitesCount => Begunok.ActivityCount.ToString();
 
-        public MainPageViewModel(INavigationService navigation,IBegunok begunok)
+        public string TimeBeforeCurrentActivityEnd => Begunok.TimeToNextActivity;
+
+        public string NameOfCurrentActivity => Begunok.CurrentActivityName;
+
+        public MainPageViewModel(INavigationService navigation, IBegunok begunok)
         {
             NavigationService = navigation;
             Begunok = begunok;
             ClickCommand = new Command(CreateBegunokButtonClicked);
+            Begunok.Notify += BegunokHandler;
+        }
+
+        private void BegunokHandler(string str)
+        {
+            switch (str)
+            {
+                case "Start":
+                    OnPropertyChanged(nameof(ActivitesCount));
+                    break;
+                case "TimerUpdate":
+                    OnPropertyChanged(nameof(TimeBeforeCurrentActivityEnd));
+                    break;
+                case "Delete":
+                    OnPropertyChanged(nameof(ActivitesCount));
+                    break;
+                default:
+                    break;
+            }
         }
 
         private async void CreateBegunokButtonClicked()
-        {           
-            await NavigationService.NavigateToCreateBegunok();
+        {
+            await NavigationService.NavigateToCreateBegunok(NavigationService, Begunok);
         }
 
         private void ActivityTimerHandler()

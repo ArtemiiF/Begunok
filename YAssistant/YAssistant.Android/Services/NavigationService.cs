@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using YAssistant.Models;
 using YAssistant.Services;
 using YAssistant.View;
 
@@ -6,9 +7,10 @@ namespace YAssistant.Droid.Services
 {
     class NavigationService : INavigationService
     {
-        public async Task NavigateToCreateBegunok()
+        public async Task NavigateToCreateBegunok(INavigationService navigation, IBegunok begunok)
         {
-            await App.Current.MainPage.Navigation.PushAsync(new CreateBegunokPage());
+            //await App.Current.MainPage.Navigation.PushAsync();
+            await App.Current.MainPage.Navigation.PushAsync(new CreateBegunokPage(navigation, begunok));
         }
 
         public async Task NavigateToCreateBegunokActivity()
@@ -18,7 +20,8 @@ namespace YAssistant.Droid.Services
 
         public async Task NavigateToMain()
         {
-            await App.Current.MainPage.Navigation.PushAsync(new MainPage());
+            await App.Current.MainPage.Navigation.PopToRootAsync();
         }
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CommonServiceLocator;
+using System;
 using Xamarin.Forms;
 using YAssistant.ViewModel;
 
@@ -9,7 +10,7 @@ namespace YAssistant.View
         public MainPage()
         {
             InitializeComponent();
-            this.BindingContext = ServiceLocator.Current.GetInstance<MainPageViewModel>();        
+            this.BindingContext = ServiceLocator.Current.GetInstance<MainPageViewModel>();
         }
     }
 }

@@ -11,34 +11,25 @@
             <ScrollView Grid.Row="0">
 
                 <StackLayout>
-                    <Label Text="First" FontSize="Large"/>
-                    <Label Text="Second" FontSize="Large"/>
-                    <Label Text="First" FontSize="Large"/>
-                    <Label Text="Second" FontSize="Large"/>
-                    <Label Text="First" FontSize="Large"/>
-                    <Label Text="Second" FontSize="Large"/>
-                    <Label Text="First" FontSize="Large"/>
-                    <Label Text="Second" FontSize="Large"/>
-                    <Label Text="First" FontSize="Large"/>
-                    <Label Text="Second" FontSize="Large"/>
-                    <Label Text="First" FontSize="Large"/>
-                    <Label Text="Second" FontSize="Large"/>
-                    <Label Text="First" FontSize="Large"/>
-                    <Label Text="Second" FontSize="Large"/>
-                    <Label Text="First" FontSize="Large"/>
-                    <Label Text="Second" FontSize="Large"/>
-                    <Label Text="First" FontSize="Large"/>
-                    <Label Text="Second" FontSize="Large"/>
+                    <Label Text="{Binding ActivitesCount}" FontSize="Large"/>
                 </StackLayout>
             </ScrollView>
 
             <ImageButton Grid.Row="0" Source="AddBegunokActivityButton.png" 
                 BackgroundColor="Transparent"
                 Scale=".18"
-                AnchorX="0.97"
-                AnchorY="1.02"
+                AnchorX="1.0"
+                AnchorY="0.9"
                 Margin="20"
-                Command="{Binding ClickCommand}" />
+                Command="{Binding AddBegunokActivityCommand}" />
+
+            <ImageButton Grid.Row="0" Source="AddBegunokButton.png" 
+                BackgroundColor="Transparent"
+                Scale=".18"
+                AnchorX="1.0"
+                AnchorY="1.05"
+                Margin="20"
+                Command="{Binding StartBegunokCommand}" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

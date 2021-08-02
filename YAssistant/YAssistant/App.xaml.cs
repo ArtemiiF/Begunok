@@ -15,8 +15,9 @@ namespace YAssistant
 
             MainPage = new NavigationPage(new View.MainPage())
             {
-                BarBackgroundColor = Color.FromHex("#272537")
+                BarBackgroundColor = Color.FromHex("#272537")      
             };
+            
         }
 
         protected void InitializeDependencies(Module platformModule)

@@ -9,9 +9,7 @@ namespace YAssistant.IoC
         {
             base.Load(builder);
 
-            builder.RegisterType<MainPageViewModel>();
-            builder.RegisterType<CreateBegunokPageViewModel>();
-            builder.RegisterType<CreateBegunokActivityPageViewModel>();
+            builder.RegisterType<MainPageViewModel>();           
         }
     }
 }

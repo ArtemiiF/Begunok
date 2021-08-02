@@ -1,4 +1,5 @@
 ﻿using CommonServiceLocator;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using YAssistant.ViewModel;
@@ -11,7 +12,8 @@ namespace YAssistant.View
         public CreateBegunokActivityPage()
         {
             InitializeComponent();
-            this.BindingContext = ServiceLocator.Current.GetInstance<CreateBegunokActivityPageViewModel>();
+            this.BindingContext = new CreateBegunokActivityPageViewModel();
+            
         }
     }
 }

@@ -5,11 +5,12 @@
              Background="Transparent">
     <ContentPage.Content>
         <Grid BackgroundColor="#272537">
+            
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
+            
             <ScrollView Grid.Row="0">
-
                 <StackLayout>
                     <Label Text="{Binding NameOfCurrentActivity}" FontSize="Large"
                            VerticalOptions="End" HorizontalOptions="Center" TextColor="LightGray"/>
@@ -17,8 +18,13 @@
                     <Label Text="{Binding TimeBeforeCurrentActivityEnd}" FontSize="36"
                            HorizontalOptions="Center" TextColor="LightGray"/>
 
-                    <Label Text="{Binding ActivitesCount}" FontSize="36"
-                           HorizontalOptions="Center" TextColor="LightGray"/>
+                    <ListView x:Name="NextActivites" ItemsSource="{Binding NextActivites}">
+
+                    </ListView>
+                    
+                    <ListView x:Name="PastActivites" ItemsSource="{Binding PastActivites}">
+
+                    </ListView>
                     
                 </StackLayout>
             </ScrollView>

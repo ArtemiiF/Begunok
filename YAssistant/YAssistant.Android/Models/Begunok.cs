@@ -2,6 +2,7 @@
 using YAssistant.Models;
 using Android.Views;
 using Xamarin.Forms;
+using System;
 
 namespace YAssistant.Droid.Models
 {
@@ -21,7 +22,9 @@ namespace YAssistant.Droid.Models
             get
             {
                 if (ActivityCount == 0)
-                    return "No Activites";
+                {
+                    return "0:00";
+                }
 
                 return Activities[0].Time.ToString();
             }
@@ -42,13 +45,14 @@ namespace YAssistant.Droid.Models
             Notify?.Invoke("Start");
         }
 
-        public void AddActivity()
+        public void AddActivity(string activityName, TimeSpan activityTime)
         {
-            //Activities.Add(activity);
+            Activities.Add(new Activity(activityName, activityTime));
             ActivityCount++;
             Notify?.Invoke("AddActivity");
         }
 
+     
         public void ClearBegunok()
         {
             ActivityCount = 0;

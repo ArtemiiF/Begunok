@@ -62,15 +62,15 @@ namespace YAssistant.Droid
         public override void OnBackPressed()
         {
             Console.WriteLine("Back");
+
             var page = Xamarin.Forms.Application.
             Current.MainPage.Navigation.
             NavigationStack.LastOrDefault();
 
-            ICustomBackButton currentpage = page as ICustomBackButton;
-
-            if (currentpage == null)
+            if (!(page is ICustomBackButton currentpage))
             {
                 base.OnBackPressed();
+                return;
             }
 
             if (currentpage?.CustomBackButtonAction != null)

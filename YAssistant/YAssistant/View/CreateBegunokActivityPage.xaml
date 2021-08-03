@@ -4,7 +4,25 @@
              x:Class="YAssistant.View.CreateBegunokActivityPage">
     <ContentPage.Content>
         <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Background="#272537">
-            <Label Text="Create Activity" FontSize="Large"/>
+            
+            <Label Text="Create Activity" FontSize="Large" TextColor="LightGray"
+                   AbsoluteLayout.LayoutBounds=".5,0,AutoSize,AutoSize"
+                   AbsoluteLayout.LayoutFlags="PositionProportional"/>
+            
+            <Entry x:Name="ActivityName" Placeholder="Input activity name" BackgroundColor="White" 
+                   AbsoluteLayout.LayoutBounds=".5,.7,175,AutoSize"
+                   AbsoluteLayout.LayoutFlags="PositionProportional"
+                   Text="{Binding NameActivity, Mode=TwoWay}"/>
+
+            <TimePicker Time="{Binding ActivityTime, Mode=TwoWay}" TextColor="White" Format="HH\h mm\m"
+                        AbsoluteLayout.LayoutBounds=".5,.8,AutoSize,AutoSize" Scale="1.5"
+                        AbsoluteLayout.LayoutFlags="PositionProportional"/>
+
+            <ImageButton Grid.Row="0" Source="AddBegunokActivityButton.png" 
+                BackgroundColor="Transparent"
+                AbsoluteLayout.LayoutBounds=".5,.95,65,65"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                Command="{Binding AddActivityClicked}" />
         </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

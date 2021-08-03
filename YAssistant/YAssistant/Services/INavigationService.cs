@@ -10,9 +10,10 @@ namespace YAssistant.Services
     {
         Task NavigateToCreateBegunok(INavigationService navigation, IBegunok begunok);
 
-        Task NavigateToCreateBegunokActivity();
+        Task NavigateToCreateBegunokActivity(INavigationService navigation, IBegunok begunok);
 
         Task NavigateToMain();
 
+        Task PopPage();
     }
 }

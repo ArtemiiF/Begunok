@@ -25,6 +25,19 @@ namespace YAssistant.ViewModel
             AddBegunokActivityCommand = new Command(CreateBegunokActivityButtonClicked);
             StartBegunokCommand = new Command(StartBegunokButtonClicked);
             OnBackButtonClicked += BackButtonClicked;
+            Begunok.Notify += BegunokHandler;
+        }
+
+        private void BegunokHandler(string str)
+        {
+            switch (str)
+            {
+                case "AddActivity":
+                    OnPropertyChanged(nameof(ActivitesCount));
+                    break;
+                default:
+                    break;
+            }
         }
 
         protected void BackButtonClicked()
@@ -36,9 +49,7 @@ namespace YAssistant.ViewModel
 
         protected void CreateBegunokActivityButtonClicked()
         {
-            //NavigationService.NavigateToCreateBegunokActivity();
-            Begunok.AddActivity();
-            OnPropertyChanged(nameof(ActivitesCount));
+            NavigationService.NavigateToCreateBegunokActivity(NavigationService, Begunok);
         }
 
         protected void StartBegunokButtonClicked()

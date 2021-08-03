@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace YAssistant.Models
 {
@@ -16,7 +17,7 @@ namespace YAssistant.Models
 
         void StartBegunok();
 
-        void AddActivity();
+        void AddActivity(string activityName, TimeSpan activityTime);
 
         void ClearBegunok();
     }

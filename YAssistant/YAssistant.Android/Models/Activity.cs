@@ -7,10 +7,10 @@ namespace YAssistant.Droid.Models
 {
     class Activity : IActivity
     {
-        public Activity()
+        public Activity(string name, TimeSpan time)
         {
-            Name = "Unknown";
-            Time = new TimeSpan(0, 0, 0);
+            Name = name;
+            Time = time;
             Color = Color.Transparent;
             Length = 0;
             State = ActivityState.Next;
@@ -20,6 +20,6 @@ namespace YAssistant.Droid.Models
         public TimeSpan Time { get; set; }
         public Color Color { get; set; }
         public int Length { get; private set; }
-        public ActivityState State { get;private set;}
+        public ActivityState State { get; set;}
     }
 }

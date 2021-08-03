@@ -13,14 +13,19 @@ namespace YAssistant.Droid.Services
             await App.Current.MainPage.Navigation.PushAsync(new CreateBegunokPage(navigation, begunok));
         }
 
-        public async Task NavigateToCreateBegunokActivity()
+        public async Task NavigateToCreateBegunokActivity(INavigationService navigation, IBegunok begunok)
         {
-            await App.Current.MainPage.Navigation.PushAsync(new CreateBegunokActivityPage());
+            await App.Current.MainPage.Navigation.PushAsync(new CreateBegunokActivityPage(navigation,begunok));
         }
 
         public async Task NavigateToMain()
         {
             await App.Current.MainPage.Navigation.PopToRootAsync();
+        }
+
+        public async Task PopPage()
+        {
+            await App.Current.MainPage.Navigation.PopAsync();
         }
 
     }

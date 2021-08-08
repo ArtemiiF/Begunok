@@ -18,13 +18,15 @@ namespace YAssistant.ViewModel
             AddActivityClicked = new Command(AddActivity);
         }
 
-        public string NameActivity { get; set; }
+        public string NameActivity { get; private set; }
 
-        public TimeSpan ActivityTime { get; set; }
+        public TimeSpan ActivityTime { get; private set; }
+
+        public Color ActivityColor { get; set; }
 
         private void AddActivity()
         {
-            Begunok.AddActivity(NameActivity, ActivityTime);
+            Begunok.AddActivity(NameActivity, ActivityTime, ActivityColor);
             NavigationService.PopPage();
         }
     }

@@ -14,6 +14,7 @@ namespace YAssistant.ViewModel
         public ICommand AddBegunokActivityCommand { get; private set; }
         public ICommand StartBegunokCommand { get; private set; }
         public ObservableCollection<IActivity> ActivitesList { get; private set; }
+
         protected INavigationService NavigationService { get; set; }
 
         private IBegunok Begunok { get; set; }

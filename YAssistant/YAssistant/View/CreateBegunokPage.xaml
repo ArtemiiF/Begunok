@@ -28,7 +28,7 @@
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
 
-                                            <Button Grid.Column="0" Text="Color"/>
+                                            <Frame ScaleX=".5" ScaleY=".7" BackgroundColor="{Binding Color}"/>
 
                                             <Label Grid.Column="1" Text="{Binding Name}" FontSize="30" HorizontalTextAlignment="End" TextColor="White"
                                                    HorizontalOptions="Start" />

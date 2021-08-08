@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Xamarin.Forms;
 
 namespace YAssistant.Models
 {
@@ -20,7 +20,7 @@ namespace YAssistant.Models
 
         void StartBegunok();
 
-        void AddActivity(string activityName, TimeSpan activityTime);
+        void AddActivity(string activityName, TimeSpan activityTime, Color activityColor);
 
         void ClearBegunok();
     }

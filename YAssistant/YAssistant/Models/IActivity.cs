@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using Xamarin.Forms;
 
 namespace YAssistant.Models

@@ -6,11 +6,11 @@ namespace YAssistant.Droid.Models
 {
     class Activity : IActivity
     {
-        public Activity(string name, TimeSpan time)
+        public Activity(string name, TimeSpan time, Color color)
         {
             Name = name;
             Time = time;
-            Color = Color.Red;
+            Color = color;
             Length = 0;
             State = ActivityState.Next;
         }

@@ -82,7 +82,7 @@ namespace YAssistant.Droid.Models
             Notify?.Invoke("ActivityChanged");
         }
 
-        //Должен обновлять время для current activity пока не выключится/или пока есть активночти
+        //Это просто ужасно но как передлать я пока незнаю 08.08.2021
         private void ActivityTimer()
         {
             Debug.WriteLine("ActivityTimer");
@@ -111,9 +111,9 @@ namespace YAssistant.Droid.Models
             //Notify?.Invoke("ActivityEnds");
         }
 
-        public void AddActivity(string activityName, TimeSpan activityTime)
+        public void AddActivity(string activityName, TimeSpan activityTime, Color activityColor)
         {
-            Activities.Add(new Activity(activityName, activityTime));
+            Activities.Add(new Activity(activityName, activityTime, activityColor));
             ActivityCount++;
             Notify?.Invoke("AddActivity");
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows.Input;
 using Xamarin.Forms;
 using YAssistant.Models;
@@ -10,19 +11,17 @@ namespace YAssistant.ViewModel
     {
         private INavigationService NavigationService { get; set; }
         private IBegunok Begunok { get; set; }
+
         public ICommand AddActivityClicked { get; private set; }
+        public string NameActivity { get; set; }
+        public TimeSpan ActivityTime { get; set; }
+        public Color ActivityColor { get; set; }
         public CreateBegunokActivityPageViewModel(INavigationService navigation, IBegunok begunok)
         {
             NavigationService = navigation;
             Begunok = begunok;
             AddActivityClicked = new Command(AddActivity);
         }
-
-        public string NameActivity { get; private set; }
-
-        public TimeSpan ActivityTime { get; private set; }
-
-        public Color ActivityColor { get; set; }
 
         private void AddActivity()
         {

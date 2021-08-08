@@ -40,11 +40,6 @@
 
                                         </Grid>
                                         
-                                        <!--<StackLayout Orientation="Horizontal">
-                                            <Label Text="{Binding Name}" FontSize="30" HorizontalTextAlignment="End" TextColor="White"/>
-                                            <Label Text="{Binding Time}" FontSize="30" HorizontalTextAlignment="End" TextColor="White"/>
-                                            <Button Text="Cancel" Scale=".7" HorizontalOptions="End"/>
-                                        </StackLayout>-->
                                     </ViewCell.View>
                                 </ViewCell>
                             </DataTemplate>

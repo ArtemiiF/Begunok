@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:colorpicker="clr-namespace:ColorPicker;assembly=ColorPicker"
              x:Class="YAssistant.View.CreateBegunokActivityPage">
     <ContentPage.Content>
         <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Background="#272537">
@@ -8,7 +9,18 @@
             <Label Text="Create Activity" FontSize="Large" TextColor="LightGray"
                    AbsoluteLayout.LayoutBounds=".5,0,AutoSize,AutoSize"
                    AbsoluteLayout.LayoutFlags="PositionProportional"/>
-            
+
+            <colorpicker:ColorCircle x:Name="ColorCircle"
+                                     ShowLuminosityWheel="False"
+                                     SelectedColor="{Binding ActivityColor, Mode=OneWayToSource}"
+                                     AbsoluteLayout.LayoutFlags="PositionProportional"
+                                     AbsoluteLayout.LayoutBounds=".5,.1,350,autosize"/>
+
+            <Frame x:Name="ShowColor"
+                   BackgroundColor="{Binding Source={x:Reference ColorCircle}, Path=SelectedColor, Mode=OneWay}"
+                   AbsoluteLayout.LayoutFlags="PositionProportional"
+                   AbsoluteLayout.LayoutBounds=".5,.6,75,50"/>
+
             <Entry x:Name="ActivityName" Placeholder="Input activity name" BackgroundColor="White" 
                    AbsoluteLayout.LayoutBounds=".5,.7,175,AutoSize"
                    AbsoluteLayout.LayoutFlags="PositionProportional"

@@ -12,6 +12,8 @@ namespace YAssistant.Models
 
         ObservableCollection<IActivity> Activities { get; set; }
 
+        bool IsRunning { get; }
+
         string TimeToNextActivity { get;}
 
         string CurrentActivityName { get;}

@@ -46,8 +46,11 @@ namespace YAssistant.ViewModel
 
         protected void BackButtonClicked()
         {
-            Begunok.ClearBegunok();
+            if(!Begunok.IsRunning)
+                Begunok.ClearBegunok();
+
             OnPropertyChanged(nameof(ActivitesCount));
+            OnPropertyChanged(nameof(ActivitesList));
             NavigationService.NavigateToMain();
         }
 
@@ -58,7 +61,9 @@ namespace YAssistant.ViewModel
 
         protected void StartBegunokButtonClicked()
         {
-            Begunok.StartBegunok();
+            if (!Begunok.IsRunning)
+                Begunok.StartBegunok();
+
             NavigationService.NavigateToMain();
         }
     }

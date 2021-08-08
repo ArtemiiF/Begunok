@@ -19,7 +19,9 @@ namespace YAssistant.Droid.Models
         }
 
         public int ActivityCount { get; set; }
+
         public ObservableCollection<IActivity> Activities { get; set; }
+
         public string TimeToNextActivity
         {
             get
@@ -33,6 +35,7 @@ namespace YAssistant.Droid.Models
                 return "0:00";
             }
         }
+
         public string CurrentActivityName
         {
             get
@@ -46,6 +49,8 @@ namespace YAssistant.Droid.Models
                 return "No activites";
             }
         }
+
+        public bool IsRunning => timerAlive;
 
         private int currentActivityIndex = 0;
         private bool timerAlive = false;

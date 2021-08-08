@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-            xmlns:colorpicker="clr-namespace:ColorPicker;assembly=ColorPicker"
+             xmlns:colorpicker="clr-namespace:ColorPicker;assembly=ColorPicker"
              x:Class="YAssistant.View.CreateBegunokActivityPage">
     <ContentPage.Content>
         <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Background="#272537">
@@ -24,7 +24,8 @@
             <Entry x:Name="ActivityName" Placeholder="Input activity name" BackgroundColor="White" 
                    AbsoluteLayout.LayoutBounds=".5,.7,175,AutoSize"
                    AbsoluteLayout.LayoutFlags="PositionProportional"
-                   Text="{Binding NameActivity, Mode=TwoWay}"/>
+                   Text="{Binding NameActivity, Mode=TwoWay}"
+                   MaxLength="9"/>
 
             <TimePicker Time="{Binding ActivityTime, Mode=TwoWay}" TextColor="White" Format="HH\h mm\m"
                         AbsoluteLayout.LayoutBounds=".5,.8,AutoSize,AutoSize" Scale="1.5"

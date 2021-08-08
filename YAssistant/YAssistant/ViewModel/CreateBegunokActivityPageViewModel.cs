@@ -25,6 +25,12 @@ namespace YAssistant.ViewModel
 
         private void AddActivity()
         {
+            if (ActivityTime.TotalMinutes < 1 || NameActivity.Length < 1)
+            {
+                App.Current.MainPage.DisplayAlert("Error", "Name or/and time are empty", "ok");
+                return;
+            }
+
             Begunok.AddActivity(NameActivity, ActivityTime, ActivityColor);
             NavigationService.PopPage();
         }

@@ -1,2 +1,2 @@
-# YAssistant is todo/tome managment app.
+# YAssistant is todo/time managment app.
 It's pet project

@@ -3,6 +3,9 @@ using YAssistant.Models;
 using Android.Views;
 using Xamarin.Forms;
 using System;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Linq;
 
 namespace YAssistant.Droid.Models
 {
@@ -12,37 +15,95 @@ namespace YAssistant.Droid.Models
         public Begunok()
         {
             ActivityCount = 0;
-            Activities = new List<IActivity>();
+            Activities = new ObservableCollection<IActivity>();
         }
 
         public int ActivityCount { get; set; }
-        public List<IActivity> Activities { get; set; }
+        public ObservableCollection<IActivity> Activities { get; set; }
         public string TimeToNextActivity
         {
             get
             {
-                if (ActivityCount == 0)
+                foreach (var item in Activities)
                 {
-                    return "0:00";
+                    if (item.State == ActivityState.Current)
+                        return new TimeSpan(item.Time.Hours, item.Time.Minutes, item.Time.Seconds).ToString();
                 }
 
-                return Activities[0].Time.ToString();
+                return "0:00";
             }
         }
         public string CurrentActivityName
         {
             get
             {
-                if (ActivityCount == 0)
-                    return "No Activites";
+                foreach (var item in Activities)
+                {
+                    if (item.State == ActivityState.Current)
+                        return item.Name;
+                }
 
-                return Activities[0].Name;
+                return "No activites";
             }
         }
 
+        private int currentActivityIndex = 0;
+        private bool timerAlive = false;
+        DateTime ActivityEndsTime;
+
         public void StartBegunok()
         {
-            Notify?.Invoke("Start");
+            timerAlive = true;
+   
+            ChangeActivityToCurrentAndSetActivityTimer();
+            ActivityTimer();
+        }
+
+        
+        private void ChangeActivityToCurrentAndSetActivityTimer()
+        {
+            if (Activities.Last().State == ActivityState.Past)
+            {
+                timerAlive = false;
+                ClearBegunok();
+                Notify?.Invoke("BegunokEnds");
+                return;
+            }
+
+            Debug.WriteLine("ChangeActivityToCurrent \npointer:" + currentActivityIndex + "\nsize:" + ActivityCount);
+            Activities[currentActivityIndex].State = ActivityState.Current;
+            ActivityEndsTime = new DateTime(DateTime.Now.Ticks + Activities[currentActivityIndex].Time.Ticks);
+
+            Notify?.Invoke("ActivityChanged");
+        }
+
+        //Должен обновлять время для current activity пока не выключится/или пока есть активночти
+        private void ActivityTimer()
+        {
+            Debug.WriteLine("ActivityTimer");
+            Device.StartTimer(new TimeSpan(0, 0, 1), () =>
+            {
+                TimeSpan timeSpan = ActivityEndsTime - DateTime.Now + new TimeSpan(0, 0, 1);
+
+                Activities[currentActivityIndex].Time = timeSpan;
+
+                Debug.WriteLine(timeSpan.ToString());
+
+                Notify?.Invoke("TimerUpdate");
+
+                if (timeSpan.Ticks <= 0)
+                {
+                    Activities[currentActivityIndex].State = ActivityState.Past;
+                    currentActivityIndex++;
+                    ChangeActivityToCurrentAndSetActivityTimer();
+                }
+
+                return timerAlive;
+            });
+
+            Debug.WriteLine("Timer ");
+
+            //Notify?.Invoke("ActivityEnds");
         }
 
         public void AddActivity(string activityName, TimeSpan activityTime)
@@ -52,7 +113,6 @@ namespace YAssistant.Droid.Models
             Notify?.Invoke("AddActivity");
         }
 
-     
         public void ClearBegunok()
         {
             ActivityCount = 0;

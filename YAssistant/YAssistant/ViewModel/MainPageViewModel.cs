@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows.Input;
 using Xamarin.Forms;
 using YAssistant.Models;
@@ -13,8 +14,6 @@ namespace YAssistant.ViewModel
         private INavigationService NavigationService { get; set; }
 
         private IBegunok Begunok { get; set; }
-
-        public string ActivitesCount => Begunok.ActivityCount.ToString();
 
         public string TimeBeforeCurrentActivityEnd => Begunok.TimeToNextActivity;
 
@@ -32,14 +31,16 @@ namespace YAssistant.ViewModel
         {
             switch (str)
             {
-                case "Start":
-                    OnPropertyChanged(nameof(ActivitesCount));
+                case "BegunokEnds":
+                    Debug.WriteLine("BegunokEnds");
+                    OnPropertyChanged(nameof(NameOfCurrentActivity));
+                    OnPropertyChanged(nameof(TimeBeforeCurrentActivityEnd));
+                    break;
+                case "ActivityChanged":
+                    OnPropertyChanged(nameof(NameOfCurrentActivity));
                     break;
                 case "TimerUpdate":
                     OnPropertyChanged(nameof(TimeBeforeCurrentActivityEnd));
-                    break;
-                case "Delete":
-                    OnPropertyChanged(nameof(ActivitesCount));
                     break;
                 default:
                     break;
@@ -51,9 +52,5 @@ namespace YAssistant.ViewModel
             await NavigationService.NavigateToCreateBegunok(NavigationService, Begunok);
         }
 
-        private void ActivityTimerHandler()
-        {
-
-        }
     }
 }

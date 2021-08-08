@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Xamarin.Forms;
 using YAssistant.Models;
@@ -11,7 +13,7 @@ namespace YAssistant.ViewModel
         public Action OnBackButtonClicked { get; set; }
         public ICommand AddBegunokActivityCommand { get; private set; }
         public ICommand StartBegunokCommand { get; private set; }
-
+        public ObservableCollection<IActivity> ActivitesList { get; private set; }
         protected INavigationService NavigationService { get; set; }
 
         private IBegunok Begunok { get; set; }
@@ -22,10 +24,11 @@ namespace YAssistant.ViewModel
         {
             NavigationService = navigation;
             Begunok = begunok;
+            ActivitesList = Begunok.Activities;
             AddBegunokActivityCommand = new Command(CreateBegunokActivityButtonClicked);
             StartBegunokCommand = new Command(StartBegunokButtonClicked);
             OnBackButtonClicked += BackButtonClicked;
-            Begunok.Notify += BegunokHandler;
+            Begunok.Notify += BegunokHandler;    
         }
 
         private void BegunokHandler(string str)
@@ -34,6 +37,7 @@ namespace YAssistant.ViewModel
             {
                 case "AddActivity":
                     OnPropertyChanged(nameof(ActivitesCount));
+                    OnPropertyChanged(nameof(ActivitesList));                 
                     break;
                 default:
                     break;

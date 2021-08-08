@@ -8,10 +8,48 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <ScrollView Grid.Row="0">
-
+            <ScrollView Grid.Row="0" VerticalScrollBarVisibility="Always">
                 <StackLayout>
-                    <Label Text="{Binding ActivitesCount}" FontSize="Large"/>
+                    <Label Text="{Binding ActivitesCount}" FontSize="36" TextColor="White"
+                           HorizontalOptions="Center" VerticalOptions="Center"/>
+
+                    <ListView x:Name="activitesList" ItemsSource="{Binding ActivitesList} "
+                              HorizontalOptions="Center" VerticalOptions="Center">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <ViewCell.View>
+
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="3*"/>
+                                                <ColumnDefinition Width="3*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Button Grid.Column="0" Text="Color"/>
+
+                                            <Label Grid.Column="1" Text="{Binding Name}" FontSize="30" HorizontalTextAlignment="End" TextColor="White"
+                                                   HorizontalOptions="Start" />
+                                            
+                                            <Label Grid.Column="2" Text="{Binding Time}" FontSize="30" HorizontalTextAlignment="End" TextColor="White"
+                                                    HorizontalOptions="Start"/>
+                                            
+                                            <Button Grid.Column="3" Text="Cancel" Scale=".7" HorizontalOptions="End"/>
+
+                                        </Grid>
+                                        
+                                        <!--<StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding Name}" FontSize="30" HorizontalTextAlignment="End" TextColor="White"/>
+                                            <Label Text="{Binding Time}" FontSize="30" HorizontalTextAlignment="End" TextColor="White"/>
+                                            <Button Text="Cancel" Scale=".7" HorizontalOptions="End"/>
+                                        </StackLayout>-->
+                                    </ViewCell.View>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
                 </StackLayout>
             </ScrollView>
 

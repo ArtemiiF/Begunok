@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using Xamarin.Forms;
 using YAssistant.Models;
 
@@ -11,7 +10,7 @@ namespace YAssistant.Droid.Models
         {
             Name = name;
             Time = time;
-            Color = Color.Transparent;
+            Color = Color.Red;
             Length = 0;
             State = ActivityState.Next;
         }

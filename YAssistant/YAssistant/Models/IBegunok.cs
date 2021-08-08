@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace YAssistant.Models
 {
@@ -9,7 +10,7 @@ namespace YAssistant.Models
         event BegunokHandler Notify;
         int ActivityCount { get; set; }
 
-        List<IActivity> Activities { get; set; }
+        ObservableCollection<IActivity> Activities { get; set; }
 
         string TimeToNextActivity { get;}
 

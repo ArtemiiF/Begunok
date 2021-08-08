@@ -21,6 +21,6 @@ namespace YAssistant.Models
 
         int Length { get; }
 
-        ActivityState State { get; }
+        ActivityState State { get; set; }
     }
 }

@@ -112,7 +112,7 @@
     <AndroidResource Include="Resources\drawable\AddBegunokActivityButton.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\YAssistant\BegunokApp.csproj">
+    <ProjectReference Include="..\BegunokApp\BegunokApp.csproj">
       <Project>{5B3B1CD8-F181-4B09-B8F9-B9FB76ADB156}</Project>
       <Name>BegunokApp</Name>
     </ProjectReference>

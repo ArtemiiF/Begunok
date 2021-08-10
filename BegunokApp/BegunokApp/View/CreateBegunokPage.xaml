@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:BegunokApp.ViewModel"
+             x:Class="BegunokApp.View.CreateBegunokPage"
+             x:Name="CreateBegunokPageViewModel"
+             Background="Transparent">
+    <ContentPage.Content>
+        <Grid BackgroundColor="#272537">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <ScrollView Grid.Row="0" VerticalScrollBarVisibility="Always">
+                <StackLayout>
+                    <Label Text="{Binding ActivitesCount}" FontSize="36" TextColor="White"
+                           HorizontalOptions="Center" VerticalOptions="Center"/>
+
+                    <ListView x:Name="activitesList" ItemsSource="{Binding ActivitesList} "
+                              HorizontalOptions="Center" VerticalOptions="Center">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <ViewCell.View>
+
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="3*"/>
+                                                <ColumnDefinition Width="3*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Frame Grid.Column="0" ScaleX=".5" ScaleY=".7" BackgroundColor="{Binding Color}"/>
+
+                                            <Label Grid.Column="1" Text="{Binding Name}" FontSize="30" HorizontalTextAlignment="End" TextColor="White"
+                                                   HorizontalOptions="Start" />
+
+                                            <Label Grid.Column="2" Text="{Binding Time}" FontSize="30" HorizontalTextAlignment="End" TextColor="White"
+                                                    HorizontalOptions="Start"/>
+
+                                            <ImageButton Grid.Column="3" Source="DeleteActivityButton.png"
+                                                         BackgroundColor="Transparent"     
+                                                         Command="{Binding Source={x:Reference Name=CreateBegunokPageViewModel},
+                                                                    Path=BindingContext.DeleteActivityCommand}"/>
+                                            <!--Command="{Binding Source={x:Reference Name=CreateBegunokActivityPageViewModel},
+                                                                    Path=BindingContext.DeleteActivityCommand}"
+                                                        CommandParameter="{Binding Id, Mode=OneWayToSource}"/>-->
+                                        </Grid>
+                                    </ViewCell.View>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </ScrollView>
+
+            <ImageButton Grid.Row="0" Source="AddBegunokActivityButton.png" 
+                BackgroundColor="Transparent"
+                Scale=".18"
+                AnchorX="1.0"
+                AnchorY="0.9"
+                Margin="20"
+                Command="{Binding AddBegunokActivityCommand}" />
+
+            <ImageButton Grid.Row="0" Source="AddBegunokButton.png" 
+                BackgroundColor="Transparent"
+                Scale=".18"
+                AnchorX="1.0"
+                AnchorY="1.05"
+                Margin="20"
+                Command="{Binding StartBegunokCommand}" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

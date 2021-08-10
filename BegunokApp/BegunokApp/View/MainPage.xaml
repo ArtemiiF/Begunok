@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BegunokApp.View.MainPage"
+             Background="Transparent">
+    <ContentPage.Content>
+        <Grid BackgroundColor="#272537">
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <ScrollView Grid.Row="0">
+                <StackLayout>
+                    <Label Text="{Binding NameOfCurrentActivity}" FontSize="Large"
+                           VerticalOptions="End" HorizontalOptions="Center" TextColor="LightGray"/>
+
+                    <Label Text="{Binding TimeBeforeCurrentActivityEnd}" FontSize="36"
+                           HorizontalOptions="Center" TextColor="LightGray"/>
+
+                    <ListView x:Name="NextActivites" ItemsSource="{Binding NextActivites}">
+
+                    </ListView>
+                    
+                    <ListView x:Name="PastActivites" ItemsSource="{Binding PastActivites}">
+
+                    </ListView>
+                    
+                </StackLayout>
+            </ScrollView>
+            
+            <ImageButton Grid.Row="0" Source="AddBegunokButton.png" 
+                BackgroundColor="Transparent"
+                Scale=".18"
+                AnchorX="0.97"
+                AnchorY="1.02"
+                Margin="20"
+                Command="{Binding ClickCommand}" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

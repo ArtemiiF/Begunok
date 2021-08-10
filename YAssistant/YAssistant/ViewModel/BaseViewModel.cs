@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 
 
-namespace YAssistant.ViewModel
+namespace BegunokApp.ViewModel
 {
     abstract class BaseViewModel : INotifyPropertyChanged
     {

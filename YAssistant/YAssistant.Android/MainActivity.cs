@@ -2,13 +2,13 @@
 using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
-using YAssistant.Droid.IoC;
+using BegunokApp.Droid.IoC;
 using Android.Views;
 using System.Linq;
-using YAssistant.View;
+using BegunokApp.View;
 using System;
 
-namespace YAssistant.Droid
+namespace BegunokApp.Droid
 {
     [Activity(Label = "YAssistant", Icon = "@mipmap/icon",
         Theme = "@style/MainTheme", MainLauncher = true,

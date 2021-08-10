@@ -1,10 +1,10 @@
 ﻿using Autofac;
-using YAssistant.Droid.Models;
-using YAssistant.Droid.Services;
-using YAssistant.Models;
-using YAssistant.Services;
+using BegunokApp.Droid.Models;
+using BegunokApp.Droid.Services;
+using BegunokApp.Models;
+using BegunokApp.Services;
 
-namespace YAssistant.Droid.IoC
+namespace BegunokApp.Droid.IoC
 {
     class PlatformModule : Module
     {

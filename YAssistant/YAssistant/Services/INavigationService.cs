@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using YAssistant.Models;
+﻿using System.Threading.Tasks;
+using BegunokApp.Models;
 
-namespace YAssistant.Services
+namespace BegunokApp.Services
 {
     public interface INavigationService
     {

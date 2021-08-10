@@ -1,9 +1,9 @@
-﻿using System.Threading.Tasks;
-using YAssistant.Models;
-using YAssistant.Services;
-using YAssistant.View;
+﻿using BegunokApp.Services;
+using System.Threading.Tasks;
+using BegunokApp.Models;
+using BegunokApp.View;
 
-namespace YAssistant.Droid.Services
+namespace BegunokApp.Droid.Services
 {
     class NavigationService : INavigationService
     {

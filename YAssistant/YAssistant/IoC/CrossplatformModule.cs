@@ -1,7 +1,7 @@
 ﻿using Autofac;
-using YAssistant.ViewModel;
+using BegunokApp.ViewModel;
 
-namespace YAssistant.IoC
+namespace BegunokApp.IoC
 {
     class CrossplatformModule : Module
     {
@@ -9,7 +9,7 @@ namespace YAssistant.IoC
         {
             base.Load(builder);
 
-            builder.RegisterType<MainPageViewModel>();           
+            builder.RegisterType<MainPageViewModel>();
         }
     }
 }

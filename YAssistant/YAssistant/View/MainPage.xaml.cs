@@ -1,9 +1,9 @@
 ﻿using CommonServiceLocator;
 using System;
 using Xamarin.Forms;
-using YAssistant.ViewModel;
+using BegunokApp.ViewModel;
 
-namespace YAssistant.View
+namespace BegunokApp.View
 {
     public partial class MainPage : ContentPage
     {

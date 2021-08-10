@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
 
-namespace YAssistant.Models
+namespace BegunokApp.Models
 {
     public delegate void BegunokHandler(string message);
     public interface IBegunok
@@ -22,6 +22,9 @@ namespace YAssistant.Models
 
         void AddActivity(string activityName, TimeSpan activityTime, Color activityColor);
 
+        void DeleteActivity(int id);
+
         void ClearBegunok();
+
     }
 }

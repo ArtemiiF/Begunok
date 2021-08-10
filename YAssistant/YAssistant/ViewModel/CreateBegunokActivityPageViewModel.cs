@@ -1,11 +1,11 @@
-﻿using System;
+﻿using BegunokApp.Services;
+using System;
 using System.Diagnostics;
 using System.Windows.Input;
 using Xamarin.Forms;
-using YAssistant.Models;
-using YAssistant.Services;
+using BegunokApp.Models;
 
-namespace YAssistant.ViewModel
+namespace BegunokApp.ViewModel
 {
     class CreateBegunokActivityPageViewModel : BaseViewModel
     {

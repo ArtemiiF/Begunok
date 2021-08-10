@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using YAssistant.Models;
+using BegunokApp.Models;
 using Android.Views;
 using Xamarin.Forms;
 using System;
@@ -7,9 +7,9 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 
-namespace YAssistant.Droid.Models
+namespace BegunokApp.Droid.Models
 {
-    class Begunok : IBegunok
+    public class Begunok : IBegunok
     {
         public event BegunokHandler Notify;
         public Begunok()
@@ -59,12 +59,12 @@ namespace YAssistant.Droid.Models
         public void StartBegunok()
         {
             timerAlive = true;
-   
+
             ChangeActivityToCurrentAndSetActivityTimer();
             ActivityTimer();
         }
 
-        
+
         private void ChangeActivityToCurrentAndSetActivityTimer()
         {
             if (Activities.Last().State == ActivityState.Past)
@@ -76,6 +76,7 @@ namespace YAssistant.Droid.Models
             }
 
             Debug.WriteLine("ChangeActivityToCurrent \npointer:" + currentActivityIndex + "\nsize:" + ActivityCount);
+
             Activities[currentActivityIndex].State = ActivityState.Current;
             ActivityEndsTime = new DateTime(DateTime.Now.Ticks + Activities[currentActivityIndex].Time.Ticks);
 
@@ -118,11 +119,33 @@ namespace YAssistant.Droid.Models
             Notify?.Invoke("AddActivity");
         }
 
+        public void DeleteActivity(int id)
+        {
+            if(IsRunning)
+            {
+                App.Current.MainPage.DisplayAlert("Warning", "You can't delete activity while begunok is running", "Ok");
+                return;
+            }
+
+            foreach (var item in Activities)
+            {
+                if (item.Id == id)
+                {
+                    Activities.Remove(item);
+                    Debug.WriteLine($"{item.Name} is deleted");
+                    ActivityCount--;
+                    Notify?.Invoke("AddActivity");
+                    return;
+                }
+            }
+
+        }
+
         public void ClearBegunok()
         {
             ActivityCount = 0;
             Activities.Clear();
-            Notify?.Invoke("Delete");
+            Activity.ActivityCount = 0;
         }
     }
 }

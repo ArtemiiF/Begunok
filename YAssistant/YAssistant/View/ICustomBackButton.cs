@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace YAssistant.View
+namespace BegunokApp.View
 {
     public interface ICustomBackButton
     {

@@ -2,9 +2,9 @@
 using Autofac.Extras.CommonServiceLocator;
 using CommonServiceLocator;
 using Xamarin.Forms;
-using YAssistant.IoC;
+using BegunokApp.IoC;
 
-namespace YAssistant
+namespace BegunokApp
 {
     public partial class App : Application
     {

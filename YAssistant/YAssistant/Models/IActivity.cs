@@ -1,7 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 
-namespace YAssistant.Models
+namespace BegunokApp.Models
 {
     public enum ActivityState
     {
@@ -12,6 +12,7 @@ namespace YAssistant.Models
 
     public interface IActivity
     {
+        int Id { get; }
         string Name { get; set; }
 
         TimeSpan Time { get; set; }

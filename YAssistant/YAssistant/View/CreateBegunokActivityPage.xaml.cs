@@ -1,13 +1,13 @@
-﻿using CommonServiceLocator;
+﻿using BegunokApp.Services;
+using CommonServiceLocator;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using YAssistant.Models;
-using YAssistant.Services;
-using YAssistant.ViewModel;
+using BegunokApp.Models;
+using BegunokApp.ViewModel;
 
 
-namespace YAssistant.View
+namespace BegunokApp.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CreateBegunokActivityPage : ContentPage

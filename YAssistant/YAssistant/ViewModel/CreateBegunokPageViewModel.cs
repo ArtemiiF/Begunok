@@ -1,18 +1,21 @@
-﻿using System;
+﻿using BegunokApp.Services;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Windows.Input;
 using Xamarin.Forms;
-using YAssistant.Models;
-using YAssistant.Services;
+using BegunokApp.Models;
 
-namespace YAssistant.ViewModel
+namespace BegunokApp.ViewModel
 {
     class CreateBegunokPageViewModel : BaseViewModel
     {
+        public int Id { get; set; }
         public Action OnBackButtonClicked { get; set; }
         public ICommand AddBegunokActivityCommand { get; private set; }
         public ICommand StartBegunokCommand { get; private set; }
+        public ICommand DeleteActivityCommand { get; private set; }
         public ObservableCollection<IActivity> ActivitesList { get; private set; }
 
         protected INavigationService NavigationService { get; set; }
@@ -26,13 +29,22 @@ namespace YAssistant.ViewModel
             NavigationService = navigation;
             Begunok = begunok;
             ActivitesList = Begunok.Activities;
+
             AddBegunokActivityCommand = new Command(CreateBegunokActivityButtonClicked);
             StartBegunokCommand = new Command(StartBegunokButtonClicked);
+            DeleteActivityCommand = new Command(OnDeleteActivity);
+
             OnBackButtonClicked += BackButtonClicked;
             Begunok.Notify += BegunokHandler;    
         }
 
-        private void BegunokHandler(string str)
+        protected void OnDeleteActivity()
+        {
+            Debug.WriteLine("DeleteActivityButtonClicked");
+            Begunok.DeleteActivity(Id);
+        }
+
+        protected void BegunokHandler(string str)
         {
             switch (str)
             {

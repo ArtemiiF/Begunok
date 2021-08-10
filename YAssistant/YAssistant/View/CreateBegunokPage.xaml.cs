@@ -1,11 +1,11 @@
-﻿using System;
+﻿using BegunokApp.Services;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using YAssistant.Models;
-using YAssistant.Services;
-using YAssistant.ViewModel;
+using BegunokApp.ViewModel;
+using BegunokApp.Models;
 
-namespace YAssistant.View
+namespace BegunokApp.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CreateBegunokPage : ContentPage , ICustomBackButton

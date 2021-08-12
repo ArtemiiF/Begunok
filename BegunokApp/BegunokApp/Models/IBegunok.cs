@@ -8,7 +8,10 @@ namespace BegunokApp.Models
     public interface IBegunok
     {
         event BegunokHandler Notify;
+
         int ActivityCount { get; set; }
+
+        string HowLeftIs { get; }
 
         ObservableCollection<IActivity> Activities { get; set; }
 
@@ -26,5 +29,6 @@ namespace BegunokApp.Models
 
         void ClearBegunok();
 
+        
     }
 }

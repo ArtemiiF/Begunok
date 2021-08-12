@@ -1,6 +1,5 @@
 ﻿using BegunokApp.Services;
 using System;
-using System.Diagnostics;
 using System.Windows.Input;
 using Xamarin.Forms;
 using BegunokApp.Models;

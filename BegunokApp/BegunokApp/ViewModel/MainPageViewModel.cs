@@ -1,9 +1,9 @@
 ﻿using BegunokApp.Services;
-using System;
 using System.Diagnostics;
 using System.Windows.Input;
 using Xamarin.Forms;
 using BegunokApp.Models;
+using System.Collections.ObjectModel;
 
 namespace BegunokApp.ViewModel
 {
@@ -19,11 +19,14 @@ namespace BegunokApp.ViewModel
 
         public string NameOfCurrentActivity => Begunok.CurrentActivityName;
 
+        public string HowLeftBegunokIs => Begunok.HowLeftIs;
+        public ObservableCollection<IActivity> Activities { get; private set; }
         public MainPageViewModel(INavigationService navigation, IBegunok begunok)
         {
             NavigationService = navigation;
             Begunok = begunok;
             ClickCommand = new Command(CreateBegunokButtonClicked);
+            Activities = begunok.Activities;
             Begunok.Notify += BegunokHandler;
         }
 
@@ -39,8 +42,11 @@ namespace BegunokApp.ViewModel
                 case "ActivityChanged":
                     OnPropertyChanged(nameof(NameOfCurrentActivity));
                     break;
+                //Я знаю что обновление визуала бегунка сюда запихивать плохо но мне все равно ;-)
                 case "TimerUpdate":
+                    OnPropertyChanged(nameof(HowLeftBegunokIs));
                     OnPropertyChanged(nameof(TimeBeforeCurrentActivityEnd));
+                    OnPropertyChanged(nameof(Activities));                   
                     break;
                 default:
                     break;

@@ -1,6 +1,4 @@
 ﻿using BegunokApp.Services;
-using CommonServiceLocator;
-using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using BegunokApp.Models;

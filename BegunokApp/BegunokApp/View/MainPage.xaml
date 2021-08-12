@@ -9,15 +9,30 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            
+
             <ScrollView Grid.Row="0">
                 <StackLayout>
+                    <Label Text="This" FontSize="Large" TextColor="LightGray" HorizontalOptions="CenterAndExpand"/>
+
+                    <CollectionView AbsoluteLayout.LayoutBounds=".5,.5,AutoSize,AutoSize" AbsoluteLayout.LayoutFlags="PositionProportional"
+                                        ItemsLayout="HorizontalList" 
+                                        HeightRequest="25"
+                                        SelectionMode="None"    
+                                        TranslationX="{Binding HowLeftBegunokIs}" 
+                                        ItemsSource="{Binding Activities}">
+                        <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <BoxView BackgroundColor="{Binding Color}" WidthRequest="{Binding Length}"/>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+
                     <Label Text="{Binding NameOfCurrentActivity}" FontSize="Large"
                            VerticalOptions="End" HorizontalOptions="Center" TextColor="LightGray"/>
 
                     <Label Text="{Binding TimeBeforeCurrentActivityEnd}" FontSize="36"
                            HorizontalOptions="Center" TextColor="LightGray"/>
-
+                    
                     <ListView x:Name="NextActivites" ItemsSource="{Binding NextActivites}">
 
                     </ListView>

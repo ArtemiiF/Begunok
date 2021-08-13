@@ -14,6 +14,7 @@ namespace BegunokApp.Droid.Models
         {
             ActivityCount = 0;
             Activities = new ObservableCollection<IActivity>();
+            SetStartPositionOfBegunokVizualization();
         }
 
         public int ActivityCount { get; set; }
@@ -30,7 +31,7 @@ namespace BegunokApp.Droid.Models
                         return new TimeSpan(item.Time.Hours, item.Time.Minutes, item.Time.Seconds).ToString();
                 }
 
-                return "0:00";
+                return "0:00:00";
             }
         }
 
@@ -53,7 +54,7 @@ namespace BegunokApp.Droid.Models
         public string HowLeftIs => posOfBegunokVizualization.ToString();
 
 
-        private int posOfBegunokVizualization = 206;
+        private int posOfBegunokVizualization = 0;
         private int currentActivityIndex = 0;
         private bool timerAlive = false;
         private DateTime ActivityEndsTime;
@@ -62,12 +63,9 @@ namespace BegunokApp.Droid.Models
         {
             timerAlive = true;
 
-            SetStartPositionOfBegunokVizualization();
-
             ChangeActivityToCurrentAndSetActivityTimer();
             ActivityTimer();
         }
-
 
         private void ChangeActivityToCurrentAndSetActivityTimer()
         {
@@ -89,10 +87,10 @@ namespace BegunokApp.Droid.Models
 
         private void SetStartPositionOfBegunokVizualization()
         {
-            //Xamarin.Essentials.DisplayInfo screenInfo = Xamarin.Essentials.DeviceDisplay.MainDisplayInfo;
-            //posOfBegunokVizualization = Convert.ToInt32(screenInfo.Width / 2);
-            //Debug.WriteLine("posOfBegunokVizualization:" + posOfBegunokVizualization);
-            posOfBegunokVizualization = 206;
+            Xamarin.Essentials.DisplayInfo screenInfo = Xamarin.Essentials.DeviceDisplay.MainDisplayInfo;
+            posOfBegunokVizualization = Convert.ToInt32(screenInfo.Width / screenInfo.Density - 0.5f) / 2;
+
+            Debug.WriteLine("posOfBegunokVizualization:" + posOfBegunokVizualization);            
         }
 
         //Это просто ужасно но как передлать я пока незнаю 08.08.2021
@@ -101,6 +99,10 @@ namespace BegunokApp.Droid.Models
             Debug.WriteLine("ActivityTimer");
             Device.StartTimer(new TimeSpan(0, 0, 1), () =>
             {
+                //Обработка на случай досрочного завершения бегунка
+                if (!timerAlive)
+                    return timerAlive;
+
                 TimeSpan timeSpan = ActivityEndsTime - DateTime.Now + new TimeSpan(0, 0, 1);
 
                 Activities[currentActivityIndex].Time = timeSpan;
@@ -139,7 +141,7 @@ namespace BegunokApp.Droid.Models
 
         public void DeleteActivity(int id)
         {
-            if(IsRunning)
+            if (IsRunning)
             {
                 App.Current.MainPage.DisplayAlert("Warning", "You can't delete activity while begunok is running", "Ok");
                 return;
@@ -161,6 +163,7 @@ namespace BegunokApp.Droid.Models
 
         public void ClearBegunok()
         {
+            timerAlive = false;
             ActivityCount = 0;
             SetStartPositionOfBegunokVizualization();
             Activities.Clear();

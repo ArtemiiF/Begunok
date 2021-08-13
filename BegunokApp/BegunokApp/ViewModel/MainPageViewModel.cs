@@ -11,6 +11,7 @@ namespace BegunokApp.ViewModel
     {
         public ICommand ClickCommand { get; private set; }
 
+        public ICommand EndBegunokCommand { get; private set; }
         private INavigationService NavigationService { get; set; }
 
         private IBegunok Begunok { get; set; }
@@ -26,8 +27,18 @@ namespace BegunokApp.ViewModel
             NavigationService = navigation;
             Begunok = begunok;
             ClickCommand = new Command(CreateBegunokButtonClicked);
+            EndBegunokCommand = new Command(EndBegunok);
             Activities = begunok.Activities;
             Begunok.Notify += BegunokHandler;
+        }
+
+        private void EndBegunok()
+        {
+            Begunok.ClearBegunok();
+            OnPropertyChanged(nameof(HowLeftBegunokIs));
+            OnPropertyChanged(nameof(TimeBeforeCurrentActivityEnd));
+            OnPropertyChanged(nameof(Activities));
+            OnPropertyChanged(nameof(NameOfCurrentActivity));
         }
 
         private void BegunokHandler(string str)

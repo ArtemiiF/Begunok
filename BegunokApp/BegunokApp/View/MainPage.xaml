@@ -5,45 +5,47 @@
              Background="Transparent">
     <ContentPage.Content>
         <Grid BackgroundColor="#272537">
-            
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-
+            
+                           
             <ScrollView Grid.Row="0">
+                
                 <StackLayout>
-                    <Label Text="This" FontSize="Large" TextColor="LightGray" HorizontalOptions="CenterAndExpand"/>
+                    <Image Source="BegunokCursor.png" HorizontalOptions="CenterAndExpand" WidthRequest="15" />
 
-                    <CollectionView AbsoluteLayout.LayoutBounds=".5,.5,AutoSize,AutoSize" AbsoluteLayout.LayoutFlags="PositionProportional"
-                                        ItemsLayout="HorizontalList" 
-                                        HeightRequest="25"
-                                        SelectionMode="None"    
-                                        TranslationX="{Binding HowLeftBegunokIs}" 
-                                        ItemsSource="{Binding Activities}">
+                    <CollectionView ItemsLayout="HorizontalList" 
+                                    HeightRequest="25"                               
+                                    TranslationX="{Binding HowLeftBegunokIs}"                                    
+                                    ItemsSource="{Binding Activities}">
                         <CollectionView.ItemTemplate>
-                                <DataTemplate>
-                                    <BoxView BackgroundColor="{Binding Color}" WidthRequest="{Binding Length}"/>
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
-                        </CollectionView>
+                            <DataTemplate>
+                                <BoxView BackgroundColor="{Binding Color}" WidthRequest="{Binding Length}"/>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
 
                     <Label Text="{Binding NameOfCurrentActivity}" FontSize="Large"
                            VerticalOptions="End" HorizontalOptions="Center" TextColor="LightGray"/>
 
                     <Label Text="{Binding TimeBeforeCurrentActivityEnd}" FontSize="36"
                            HorizontalOptions="Center" TextColor="LightGray"/>
-                    
+
                     <ListView x:Name="NextActivites" ItemsSource="{Binding NextActivites}">
 
                     </ListView>
-                    
+
                     <ListView x:Name="PastActivites" ItemsSource="{Binding PastActivites}">
 
                     </ListView>
-                    
+
                 </StackLayout>
+                
             </ScrollView>
             
+
             <ImageButton Grid.Row="0" Source="AddBegunokButton.png" 
                 BackgroundColor="Transparent"
                 Scale=".18"
@@ -51,6 +53,14 @@
                 AnchorY="1.02"
                 Margin="20"
                 Command="{Binding ClickCommand}" />
+
+            <ImageButton Grid.Row="0" Source="DeleteActivityButton.png" 
+                BackgroundColor="Transparent"
+                Scale=".18"
+                AnchorX="0.1"
+                AnchorY="1.02"
+                Margin="20"
+                Command="{Binding EndBegunokCommand}" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

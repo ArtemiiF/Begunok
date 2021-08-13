@@ -9,7 +9,6 @@ namespace BegunokApp.Droid.Services
     {
         public async Task NavigateToCreateBegunok(INavigationService navigation, IBegunok begunok)
         {
-            //await App.Current.MainPage.Navigation.PushAsync();
             await App.Current.MainPage.Navigation.PushAsync(new CreateBegunokPage(navigation, begunok));
         }
 

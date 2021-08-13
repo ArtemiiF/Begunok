@@ -73,9 +73,15 @@ namespace BegunokApp.ViewModel
 
         protected void StartBegunokButtonClicked()
         {
+            if (Begunok.ActivityCount == 0)
+            {
+                App.Current.MainPage.DisplayAlert("Warning", "No activities", "Ok");
+                return;
+            }
             if (!Begunok.IsRunning)
+            {
                 Begunok.StartBegunok();
-
+            }
             NavigationService.NavigateToMain();
         }
     }

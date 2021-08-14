@@ -13,28 +13,31 @@
             <colorpicker:ColorCircle x:Name="ColorCircle"
                                      ShowLuminosityWheel="False"
                                      SelectedColor="{Binding ActivityColor, Mode=OneWayToSource}"
-                                     AbsoluteLayout.LayoutFlags="PositionProportional"
-                                     AbsoluteLayout.LayoutBounds=".5,.1,350,autosize"/>
+                            
+                                     AbsoluteLayout.LayoutFlags="PositionProportional,SizeProportional"
+                                     AbsoluteLayout.LayoutBounds="0.5,-0.5,.8,.8"
+                                     />
 
             <Frame x:Name="ShowColor"
                    BackgroundColor="{Binding Source={x:Reference ColorCircle}, Path=SelectedColor, Mode=OneWay}"
-                   AbsoluteLayout.LayoutFlags="PositionProportional"
-                   AbsoluteLayout.LayoutBounds=".5,.6,75,50"/>
+                   AbsoluteLayout.LayoutFlags="PositionProportional,SizeProportional"
+                   AbsoluteLayout.LayoutBounds=".5,.6,.2,.08"
+                   />
 
-            <Entry x:Name="ActivityName" Placeholder="Input activity name" BackgroundColor="White" 
-                   AbsoluteLayout.LayoutBounds=".5,.7,175,AutoSize"
-                   AbsoluteLayout.LayoutFlags="PositionProportional"
+            <Entry x:Name="ActivityName" Placeholder="Input activity name" BackgroundColor="White" FontSize="Large" 
+                   AbsoluteLayout.LayoutBounds=".5,.71,.5,.08"
+                   AbsoluteLayout.LayoutFlags="All"
                    Text="{Binding NameActivity, Mode=TwoWay}"
                    MaxLength="12"/>
 
-            <TimePicker Time="{Binding ActivityTime, Mode=TwoWay}" TextColor="White" Format="HH\h mm\m"
-                        AbsoluteLayout.LayoutBounds=".5,.8,AutoSize,AutoSize" Scale="1.5"
-                        AbsoluteLayout.LayoutFlags="PositionProportional"/>
+            <TimePicker Time="{Binding ActivityTime, Mode=TwoWay}" TextColor="White" Format="HH\h mm\m" FontSize="Large"
+                        AbsoluteLayout.LayoutBounds=".5,.82,.25,.1" Scale="1.3"
+                        AbsoluteLayout.LayoutFlags="All"/>
 
             <ImageButton Grid.Row="0" Source="AddBegunokActivityButton.png" 
                 BackgroundColor="Transparent"
-                AbsoluteLayout.LayoutBounds=".5,.95,65,65"
-                AbsoluteLayout.LayoutFlags="PositionProportional"
+                AbsoluteLayout.LayoutBounds=".5,.95,.2,.1"
+                AbsoluteLayout.LayoutFlags="All"
                 Command="{Binding AddActivityClicked}" />
         </AbsoluteLayout>
     </ContentPage.Content>

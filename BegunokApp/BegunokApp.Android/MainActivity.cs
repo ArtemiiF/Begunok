@@ -11,7 +11,7 @@ using System;
 namespace BegunokApp.Droid
 {
     [Activity(Label = "Begunok", Icon = "@mipmap/icon",
-        Theme = "@style/MainTheme", MainLauncher = true,
+        Theme = "@style/MainTheme", MainLauncher = true, ScreenOrientation = ScreenOrientation.Portrait,
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation |
         ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity

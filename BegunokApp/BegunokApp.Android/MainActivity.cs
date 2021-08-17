@@ -7,6 +7,7 @@ using Android.Views;
 using System.Linq;
 using BegunokApp.View;
 using System;
+using BegunokApp.Droid.Models;
 
 namespace BegunokApp.Droid
 {
@@ -24,6 +25,7 @@ namespace BegunokApp.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App(new PlatformModule()));
+
 
             //Что то с тулбаром там где кнопка назад
             AndroidX.AppCompat.Widget.Toolbar toolbar =

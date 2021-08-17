@@ -1,15 +1,20 @@
 ﻿using BegunokApp.Models;
+using BegunokApp.Droid.Services;
 using Xamarin.Forms;
 using System;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
+using Android.App;
+using Android.OS;
+using Android.Util;
+using Android.Content;
 
 namespace BegunokApp.Droid.Models
 {
     public class Begunok : IBegunok
     {
-        public event BegunokHandler Notify;
+        //Part of IBegunok
+        public event BegunokHandler BegunokNotify;
         public Begunok()
         {
             ActivityCount = 0;
@@ -53,14 +58,16 @@ namespace BegunokApp.Droid.Models
 
         public string HowLeftIs => posOfBegunokVizualization.ToString();
 
-
         private int posOfBegunokVizualization = 0;
         private int currentActivityIndex = 0;
         private bool timerAlive = false;
         private DateTime ActivityEndsTime;
 
+        //Здесь запускается foregroundservice
         public void StartBegunok()
         {
+            AndroidServiceHandler.StartService<BegunokTimerService>(Android.App.Application.Context);
+
             timerAlive = true;
 
             ChangeActivityToCurrentAndSetActivityTimer();
@@ -73,16 +80,16 @@ namespace BegunokApp.Droid.Models
             {
                 timerAlive = false;
                 ClearBegunok();
-                Notify?.Invoke("BegunokEnds");
+                BegunokNotify?.Invoke("BegunokEnds");
                 return;
             }
 
-            Debug.WriteLine("ChangeActivityToCurrent \npointer:" + currentActivityIndex + "\nsize:" + ActivityCount);
+            System.Diagnostics.Debug.WriteLine("ChangeActivityToCurrent \npointer:" + currentActivityIndex + "\nsize:" + ActivityCount);
 
             Activities[currentActivityIndex].State = ActivityState.Current;
             ActivityEndsTime = new DateTime(DateTime.Now.Ticks + Activities[currentActivityIndex].Time.Ticks);
 
-            Notify?.Invoke("ActivityChanged");
+            BegunokNotify?.Invoke("ActivityChanged");
         }
 
         private void SetStartPositionOfBegunokVizualization()
@@ -90,13 +97,14 @@ namespace BegunokApp.Droid.Models
             Xamarin.Essentials.DisplayInfo screenInfo = Xamarin.Essentials.DeviceDisplay.MainDisplayInfo;
             posOfBegunokVizualization = Convert.ToInt32(screenInfo.Width / screenInfo.Density - 0.5f) / 2;
 
-            Debug.WriteLine("posOfBegunokVizualization:" + posOfBegunokVizualization);            
+            System.Diagnostics.Debug.WriteLine("posOfBegunokVizualization:" + posOfBegunokVizualization);
         }
 
         //Это просто ужасно но как передлать я пока незнаю 08.08.2021
+        //Зделать это как foregroundservice
         private void ActivityTimer()
         {
-            Debug.WriteLine("ActivityTimer");
+            System.Diagnostics.Debug.WriteLine("ActivityTimer");
             Device.StartTimer(new TimeSpan(0, 0, 1), () =>
             {
                 //Обработка на случай досрочного завершения бегунка
@@ -107,14 +115,14 @@ namespace BegunokApp.Droid.Models
 
                 Activities[currentActivityIndex].Time = timeSpan;
 
-                Debug.WriteLine(timeSpan.ToString());
+                System.Diagnostics.Debug.WriteLine(timeSpan.ToString());
 
-                Notify?.Invoke("TimerUpdate");
+                BegunokNotify?.Invoke("TimerUpdate");
 
                 if (timeSpan.Seconds % 10 == 0)
                 {
-                    Debug.WriteLine("BegunokVizualization moved to left");
-                    Debug.WriteLine("posOfBegunokVizualization:" + posOfBegunokVizualization);
+                    System.Diagnostics.Debug.WriteLine("BegunokVizualization moved to left");
+                    System.Diagnostics.Debug.WriteLine("posOfBegunokVizualization:" + posOfBegunokVizualization);
                     posOfBegunokVizualization--;
                 }
                 if (timeSpan.Ticks <= 0)
@@ -127,7 +135,7 @@ namespace BegunokApp.Droid.Models
                 return timerAlive;
             });
 
-            Debug.WriteLine("Timer ");
+            System.Diagnostics.Debug.WriteLine("Timer ");
 
             //Notify?.Invoke("ActivityEnds");
         }
@@ -136,7 +144,7 @@ namespace BegunokApp.Droid.Models
         {
             Activities.Add(new Activity(activityName, activityTime, activityColor));
             ActivityCount++;
-            Notify?.Invoke("AddActivity");
+            BegunokNotify?.Invoke("AddActivity");
         }
 
         public void DeleteActivity(int id)
@@ -152,9 +160,9 @@ namespace BegunokApp.Droid.Models
                 if (item.Id == id)
                 {
                     Activities.Remove(item);
-                    Debug.WriteLine($"{item.Name} is deleted");
+                    System.Diagnostics.Debug.WriteLine($"{item.Name} is deleted");
                     ActivityCount--;
-                    Notify?.Invoke("AddActivity");
+                    BegunokNotify?.Invoke("AddActivity");
                     return;
                 }
             }
@@ -168,6 +176,9 @@ namespace BegunokApp.Droid.Models
             SetStartPositionOfBegunokVizualization();
             Activities.Clear();
             Activity.ActivityCount = 0;
+            AndroidServiceHandler.StopService<BegunokTimerService>(Android.App.Application.Context);
         }
+
     }
+
 }

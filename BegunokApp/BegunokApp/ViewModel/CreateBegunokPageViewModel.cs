@@ -34,7 +34,7 @@ namespace BegunokApp.ViewModel
             DeleteActivityCommand = new Command(OnDeleteActivity);
 
             OnBackButtonClicked += BackButtonClicked;
-            Begunok.Notify += BegunokHandler;    
+            Begunok.BegunokNotify += BegunokHandler;    
         }
 
         protected void OnDeleteActivity()

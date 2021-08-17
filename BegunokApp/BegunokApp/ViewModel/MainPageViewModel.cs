@@ -29,7 +29,7 @@ namespace BegunokApp.ViewModel
             ClickCommand = new Command(CreateBegunokButtonClicked);
             EndBegunokCommand = new Command(EndBegunok);
             Activities = begunok.Activities;
-            Begunok.Notify += BegunokHandler;
+            Begunok.BegunokNotify += BegunokHandler;
         }
 
         private void EndBegunok()

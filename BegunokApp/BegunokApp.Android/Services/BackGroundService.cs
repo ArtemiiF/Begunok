@@ -13,7 +13,7 @@ using System.Text;
 namespace BegunokApp.Droid.Services
 {
     [Service(Name ="ru.artemiif.BegunokService")]
-    public class BewgunokService : Service
+    public class BegunokService : Service
     {
         static readonly string TAG = typeof(BegunokService).FullName;
 

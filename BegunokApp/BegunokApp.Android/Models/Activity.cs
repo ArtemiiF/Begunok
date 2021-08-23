@@ -4,10 +4,11 @@ using BegunokApp.Models;
 
 namespace BegunokApp.Droid.Models
 {
-    class Activity : IActivity
+    internal class Activity : IActivity
     {
         public static int ActivityCount = 0;
-        private readonly int id;
+        private int id = 0;
+
         public Activity(string name, TimeSpan time, Color color)
         {
             Name = name;
@@ -15,7 +16,26 @@ namespace BegunokApp.Droid.Models
             Color = color;
             Length = SetActivityLength(time);
             State = ActivityState.Next;
-            id = ActivityCount++;
+            ActivityCount++;
+        }
+
+        public Activity(string name, TimeSpan time, Color color, ActivityState state, int length)
+        {
+            Name = name;
+            Time = time;
+            Color = color;
+            Length = length;
+            State = state;
+        }
+
+        public Activity(string name, TimeSpan time, Color color, ActivityState state, int length, int id)
+        {
+            Name = name;
+            Time = time;
+            Color = color;
+            Length = length;
+            State = state;
+            this.id = id;
         }
 
         private int SetActivityLength(TimeSpan time)

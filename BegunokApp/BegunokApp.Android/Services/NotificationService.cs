@@ -16,6 +16,7 @@ namespace BegunokApp.Droid.Services
     {
         private static readonly string foregroundChannelId = "9001";
         private static readonly Context context = Application.Context;
+        private NotificationCompat.Builder notifBuilder;
 
         public Notification GetNotification()
         {
@@ -27,7 +28,7 @@ namespace BegunokApp.Droid.Services
 
             var pendingIntent = PendingIntent.GetActivity(context, 0, intent, PendingIntentFlags.UpdateCurrent);
 
-            var notifBuilder = new NotificationCompat.Builder(context, foregroundChannelId)
+            notifBuilder = new NotificationCompat.Builder(context, foregroundChannelId)
                 .SetContentTitle("Your Title")
                 .SetContentText("Main Text Body")
                 .SetSmallIcon(Resource.Drawable.AddBegunokButton)
@@ -56,5 +57,23 @@ namespace BegunokApp.Droid.Services
             return notifBuilder.Build();
         }
 
+        public Notification SetNotificationName(string name)
+        {
+            notifBuilder.SetContentTitle(name);
+            return notifBuilder.Build();
+        }
+
+        public Notification SetVibroAndSound()
+        {
+            //notifBuilder.SetVibrate(new long[] { 100, 200, 300, 400, 500, 400, 300, 200, 400 });
+            //notifBuilder.SetSound(NotificationDefaults.Sound);
+            return notifBuilder.SetDefaults((int)NotificationDefaults.Vibrate | (int)NotificationDefaults.Sound).Build();
+        }
+
+        public Notification SetNotificationText(string text)
+        {
+            notifBuilder.SetContentText(text);
+            return notifBuilder.Build(); ;
+        }
     }
 }

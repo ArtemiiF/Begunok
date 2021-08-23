@@ -24,7 +24,7 @@ namespace BegunokApp.ViewModel
 
         private void AddActivity()
         {
-            if (ActivityTime.TotalMinutes < 1 || NameActivity.Length < 1)
+            if (ActivityTime.TotalMinutes < 1 || NameActivity == null)
             {
                 App.Current.MainPage.DisplayAlert("Error", "Name or/and time are empty", "ok");
                 return;

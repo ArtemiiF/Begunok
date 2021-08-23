@@ -29,7 +29,7 @@ namespace BegunokApp.ViewModel
             ClickCommand = new Command(CreateBegunokButtonClicked);
             EndBegunokCommand = new Command(EndBegunok);
             Activities = begunok.Activities;
-            Begunok.Notify += BegunokHandler;
+            Begunok.BegunokNotify += BegunokHandler;
         }
 
         private void EndBegunok()
@@ -45,16 +45,9 @@ namespace BegunokApp.ViewModel
         {
             switch (str)
             {
-                case "BegunokEnds":
-                    Debug.WriteLine("BegunokEnds");
-                    OnPropertyChanged(nameof(NameOfCurrentActivity));
-                    OnPropertyChanged(nameof(TimeBeforeCurrentActivityEnd));
-                    break;
-                case "ActivityChanged":
-                    OnPropertyChanged(nameof(NameOfCurrentActivity));
-                    break;
-                //Я знаю что обновление визуала бегунка сюда запихивать плохо но мне все равно ;-)
+                //Это ужасно
                 case "TimerUpdate":
+                    OnPropertyChanged(nameof(NameOfCurrentActivity));
                     OnPropertyChanged(nameof(HowLeftBegunokIs));
                     OnPropertyChanged(nameof(TimeBeforeCurrentActivityEnd));
                     OnPropertyChanged(nameof(Activities));                   

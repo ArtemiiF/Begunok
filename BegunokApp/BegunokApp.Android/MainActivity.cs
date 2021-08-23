@@ -7,11 +7,12 @@ using Android.Views;
 using System.Linq;
 using BegunokApp.View;
 using System;
+using BegunokApp.Droid.Models;
 
 namespace BegunokApp.Droid
 {
     [Activity(Label = "Begunok", Icon = "@mipmap/icon",
-        Theme = "@style/MainTheme", MainLauncher = true,
+        Theme = "@style/MainTheme", MainLauncher = true, ScreenOrientation = ScreenOrientation.Portrait,
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation |
         ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
@@ -24,6 +25,7 @@ namespace BegunokApp.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App(new PlatformModule()));
+
 
             //Что то с тулбаром там где кнопка назад
             AndroidX.AppCompat.Widget.Toolbar toolbar =

@@ -75,6 +75,9 @@
     <PackageReference Include="ColorPicker.Xamarin.Forms">
       <Version>1.3.4.11</Version>
     </PackageReference>
+    <PackageReference Include="sqlite-net-pcl">
+      <Version>1.7.335</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
   </ItemGroup>
@@ -83,9 +86,15 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Models\Activity.cs" />
     <Compile Include="Models\Begunok.cs" />
+    <Compile Include="Models\TimerBegunok.cs" />
+    <Compile Include="Models\VisualBegunok.cs" />
+    <Compile Include="Services\AndroidServiceHandler.cs" />
+    <Compile Include="Services\BegunokTimerService.cs" />
+    <Compile Include="Services\INotification.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\NotificationService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

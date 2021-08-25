@@ -10,7 +10,7 @@ namespace BegunokApp.ViewModel
 {
     class CreateBegunokPageViewModel : BaseViewModel
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public Action OnBackButtonClicked { get; set; }
         public ICommand AddBegunokActivityCommand { get; private set; }
         public ICommand StartBegunokCommand { get; private set; }
@@ -34,13 +34,13 @@ namespace BegunokApp.ViewModel
             DeleteActivityCommand = new Command(OnDeleteActivity);
 
             OnBackButtonClicked += BackButtonClicked;
-            Begunok.Notify += BegunokHandler;    
+            Begunok.BegunokNotify += BegunokHandler;
         }
 
         protected void OnDeleteActivity()
         {
-            Debug.WriteLine("DeleteActivityButtonClicked");
-            Begunok.DeleteActivity(Id);
+            Debug.WriteLine($"DeleteActivityButtonClicked. Id is {Id}");
+            Begunok.DeleteActivity(Convert.ToInt32(Id));
         }
 
         protected void BegunokHandler(string str)
@@ -49,7 +49,7 @@ namespace BegunokApp.ViewModel
             {
                 case "AddActivity":
                     OnPropertyChanged(nameof(ActivitesCount));
-                    OnPropertyChanged(nameof(ActivitesList));                 
+                    OnPropertyChanged(nameof(ActivitesList));
                     break;
                 default:
                     break;
@@ -58,9 +58,10 @@ namespace BegunokApp.ViewModel
 
         protected void BackButtonClicked()
         {
-            if(!Begunok.IsRunning)
+            if (!Begunok.IsRunning)
+            {
                 Begunok.ClearBegunok();
-
+            }
             OnPropertyChanged(nameof(ActivitesCount));
             OnPropertyChanged(nameof(ActivitesList));
             NavigationService.NavigateToMain();
@@ -78,11 +79,14 @@ namespace BegunokApp.ViewModel
                 App.Current.MainPage.DisplayAlert("Warning", "No activities", "Ok");
                 return;
             }
+
+            NavigationService.NavigateToMain();
+
             if (!Begunok.IsRunning)
             {
                 Begunok.StartBegunok();
             }
-            NavigationService.NavigateToMain();
+            System.Diagnostics.Debug.WriteLine("StartBegunokButton clicked");
         }
     }
 }

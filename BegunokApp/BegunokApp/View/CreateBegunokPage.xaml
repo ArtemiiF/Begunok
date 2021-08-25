@@ -39,7 +39,8 @@
                                                     HorizontalOptions="Start"/>
 
                                             <ImageButton Grid.Column="3" Source="DeleteActivityButton.png"
-                                                         BackgroundColor="Transparent"     
+                                                         BackgroundColor="Transparent"   
+                                                         BindingContext="{Binding Source={x:Reference Name=CreateBegunokPageViewModel}, Path=Id, Mode=OneWayToSource}"
                                                          Command="{Binding Source={x:Reference Name=CreateBegunokPageViewModel},
                                                                     Path=BindingContext.DeleteActivityCommand}"/>
                                             

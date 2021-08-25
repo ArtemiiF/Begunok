@@ -7,7 +7,7 @@ namespace BegunokApp.Models
     public delegate void BegunokHandler(string message);
     public interface IBegunok
     {
-        event BegunokHandler Notify;
+        event BegunokHandler BegunokNotify;
 
         int ActivityCount { get; set; }
 

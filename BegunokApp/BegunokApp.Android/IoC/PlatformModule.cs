@@ -13,7 +13,8 @@ namespace BegunokApp.Droid.IoC
             base.Load(builder);
 
             builder.RegisterType<NavigationService>().As<INavigationService>();
-            builder.RegisterType<Begunok>().As<IBegunok>();
+            builder.RegisterType<VisualBegunok>().As<IBegunok>();
+            builder.RegisterType<DB.BegunokDBRepository>().As<DB.IBegunokDBRepository>();
         }
 
     }

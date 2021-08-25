@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BegunokApp.DB;
+using System;
 using Xamarin.Forms;
 
 namespace BegunokApp.Models
@@ -21,6 +22,6 @@ namespace BegunokApp.Models
 
         int Length { get; }
 
-        ActivityState State { get; set; }
+        ActivityState State { get; set; }     
     }
 }

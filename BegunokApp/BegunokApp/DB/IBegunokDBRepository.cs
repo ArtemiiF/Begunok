@@ -7,7 +7,7 @@ namespace BegunokApp.DB
     public interface IBegunokDBRepository
     {
         int SaveItem(BegunokDB item);
-        void DeleteTableItems();
+        void RefreshTable();
         int DeleteItem(int id);
         BegunokDB GetItem(int id);
 

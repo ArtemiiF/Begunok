@@ -6,13 +6,14 @@ using BegunokApp.IoC;
 using BegunokApp.DB;
 using System.IO;
 using System;
+using Xamarin.Essentials;
 
 namespace BegunokApp
 {
     public partial class App : Application
     {
         public const string DATABASE_NAME = "begunok.db";
-        public static BegunokDBRepository database;
+        private static BegunokDBRepository database;
         public static BegunokDBRepository Database
         {
             get
@@ -33,7 +34,7 @@ namespace BegunokApp
             if (!App.Current.Properties.ContainsKey("posOfBegunokVizualization"))
             {
                 App.Current.Properties.Add("posOfBegunokVizualization", 0);
-            }
+            }            
 
             MainPage = new NavigationPage(new View.MainPage())
             {

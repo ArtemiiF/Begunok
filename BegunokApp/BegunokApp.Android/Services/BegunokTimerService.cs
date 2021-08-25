@@ -1,17 +1,11 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Util;
-using Android.Views;
-using Android.Widget;
 using BegunokApp.DB;
 using BegunokApp.Droid.Models;
 using BegunokApp.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Xamarin.Forms;
 
 namespace BegunokApp.Droid.Services
@@ -19,7 +13,7 @@ namespace BegunokApp.Droid.Services
     [Service(Name = "ru.artemiif.BegunokTimer")]
     class BegunokTimerService : Service
     {
-        private Begunok begunok;
+        private TimerBegunok begunok;
         private Notification notification;
         private bool timerAlive = false;
         private DateTime ActivityEndsTime;
@@ -31,7 +25,7 @@ namespace BegunokApp.Droid.Services
         public override void OnCreate()
         {
             System.Diagnostics.Debug.WriteLine("Begunok timer create");
-            begunok = new Begunok();
+            begunok = new TimerBegunok();
             System.Diagnostics.Debug.WriteLine($"{begunok.ActivityCount}");
 
             base.OnCreate();
@@ -51,9 +45,7 @@ namespace BegunokApp.Droid.Services
             notification = notifService.GetNotification();
             StartForeground(ServiceRunningNotifID, notification);
 
-            timerAlive = true;
 
-            ChangeActivityToCurrentAndSetActivityTimer();
             StartTimer();
 
             return StartCommandResult.Sticky;
@@ -62,6 +54,12 @@ namespace BegunokApp.Droid.Services
         private void StartTimer()
         {
             System.Diagnostics.Debug.WriteLine("ActivityTimer");
+
+            if (!timerAlive)
+            {
+                timerAlive = true;
+                ChangeActivityToCurrentAndSetActivityTimer();
+            }
 
             Device.StartTimer(new TimeSpan(0, 0, 1), () =>
                {
@@ -92,13 +90,17 @@ namespace BegunokApp.Droid.Services
                    {
                        System.Diagnostics.Debug.WriteLine("BegunokVizualization moved to left");
 
-                       App.Current.Properties["posOfBegunokVizualization"] = Convert.ToInt32(App.Current.Properties["posOfBegunokVizualization"]) - 1;
+                       // App.Current.Properties["posOfBegunokVizualization"] = Convert.ToInt32(App.Current.Properties["posOfBegunokVizualization"]) - 1;
+
+                       int tempPos = Xamarin.Essentials.Preferences.Get("posOfBegunokVizualization", 0);
+
+                       Xamarin.Essentials.Preferences.Set("posOfBegunokVizualization", tempPos - 1);
 
                        System.Diagnostics.Debug.WriteLine($"BegunokVizualization moved to left." +
-                           $" Pos:{Convert.ToInt32(App.Current.Properties["posOfBegunokVizualization"])}");
+                           $" Pos:{Xamarin.Essentials.Preferences.Get("posOfBegunokVizualization", 0)}");
                    }
 
-                   if (timeSpan.Ticks <= 0)
+                   if (timeSpan.TotalSeconds <= 0)
                    {
                        begunok.Activities[currentActivityIndex].State = ActivityState.Past;
                        App.Database.SaveItem(new BegunokDB(begunok.Activities[currentActivityIndex], currentActivityIndex + 1));
@@ -136,10 +138,8 @@ namespace BegunokApp.Droid.Services
 
         private void ChangeActivityToCurrentAndSetActivityTimer()
         {
-            
-                notification = notifService.SetVibroAndSound();
-                StartForeground(ServiceRunningNotifID, notification);
-            
+
+            Xamarin.Essentials.Vibration.Vibrate();
 
             if (begunok.Activities.Last().State == ActivityState.Past)
             {
@@ -151,6 +151,7 @@ namespace BegunokApp.Droid.Services
 
             begunok.Activities[currentActivityIndex].State = ActivityState.Current;
             ActivityEndsTime = new DateTime(DateTime.Now.Ticks + begunok.Activities[currentActivityIndex].Time.Ticks);
+            System.Diagnostics.Debug.WriteLine($"Id:{begunok.Activities[currentActivityIndex].Id}, State:{begunok.Activities[currentActivityIndex].State}");
         }
 
         public override void OnDestroy()

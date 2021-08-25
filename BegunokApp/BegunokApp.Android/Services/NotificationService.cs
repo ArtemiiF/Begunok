@@ -1,14 +1,8 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using AndroidX.Core.App;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+
 
 namespace BegunokApp.Droid.Services
 {
@@ -43,9 +37,9 @@ namespace BegunokApp.Droid.Services
                     Importance = NotificationImportance.High
                 };
                 notificationChannel.EnableLights(true);
-                notificationChannel.EnableVibration(true);
+                //notificationChannel.EnableVibration(true);
                 notificationChannel.SetShowBadge(true);
-                notificationChannel.SetVibrationPattern(new long[] { 100, 200, 300, 400, 500, 400, 300, 200, 400 });
+                //notificationChannel.SetVibrationPattern(new long[] { 100, 200, 300, 400, 500, 400, 300, 200, 400 });
 
                 if (context.GetSystemService(Context.NotificationService) is NotificationManager notifManager)
                 {
@@ -67,6 +61,7 @@ namespace BegunokApp.Droid.Services
         {
             //notifBuilder.SetVibrate(new long[] { 100, 200, 300, 400, 500, 400, 300, 200, 400 });
             //notifBuilder.SetSound(NotificationDefaults.Sound);
+
             return notifBuilder.SetDefaults((int)NotificationDefaults.Vibrate | (int)NotificationDefaults.Sound).Build();
         }
 

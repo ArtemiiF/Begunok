@@ -24,14 +24,16 @@ namespace BegunokApp.Droid
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            LoadApplication(new App(new PlatformModule()));
 
+            
+
+            LoadApplication(new App(new PlatformModule()));
 
             //Что то с тулбаром там где кнопка назад
             AndroidX.AppCompat.Widget.Toolbar toolbar =
             this.FindViewById<AndroidX.AppCompat.Widget.Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
-            
+
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {

@@ -28,9 +28,17 @@ namespace BegunokApp.DB
             return database.Insert(item);
         }
 
-        public void DeleteTableItems()
+        public void RefreshTable()
         {
-            database.DeleteAll<BegunokDB>();
+            try
+            {
+                database.DropTable<BegunokDB>();
+                database.CreateTable<BegunokDB>();
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.ToString());
+            }           
         }
 
         public int DeleteItem(int id)

@@ -86,6 +86,8 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Models\Activity.cs" />
     <Compile Include="Models\Begunok.cs" />
+    <Compile Include="Models\TimerBegunok.cs" />
+    <Compile Include="Models\VisualBegunok.cs" />
     <Compile Include="Services\AndroidServiceHandler.cs" />
     <Compile Include="Services\BegunokTimerService.cs" />
     <Compile Include="Services\INotification.cs" />

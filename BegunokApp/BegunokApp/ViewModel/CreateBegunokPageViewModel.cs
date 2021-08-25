@@ -59,8 +59,9 @@ namespace BegunokApp.ViewModel
         protected void BackButtonClicked()
         {
             if (!Begunok.IsRunning)
+            {
                 Begunok.ClearBegunok();
-
+            }
             OnPropertyChanged(nameof(ActivitesCount));
             OnPropertyChanged(nameof(ActivitesList));
             NavigationService.NavigateToMain();
@@ -78,11 +79,14 @@ namespace BegunokApp.ViewModel
                 App.Current.MainPage.DisplayAlert("Warning", "No activities", "Ok");
                 return;
             }
+
+            NavigationService.NavigateToMain();
+
             if (!Begunok.IsRunning)
             {
                 Begunok.StartBegunok();
             }
-            NavigationService.NavigateToMain();
+            System.Diagnostics.Debug.WriteLine("StartBegunokButton clicked");
         }
     }
 }

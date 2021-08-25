@@ -8,7 +8,7 @@ using BegunokApp.Models;
 namespace BegunokApp.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CreateBegunokPage : ContentPage , ICustomBackButton
+    public partial class CreateBegunokPage : ContentPage, ICustomBackButton
     {
         public Action CustomBackButtonAction { get; set; }
         public CreateBegunokPage(INavigationService navigation, IBegunok begunok)

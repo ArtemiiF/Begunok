@@ -1,19 +1,14 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace BegunokApp.Droid.Services
 {
     internal static class AndroidServiceHandler
     {
         private static bool isOn = false;
+        public static bool IsRunning => isOn;
+
         internal static void StartService<T>(this Context context, Bundle args = null) where T : Service
         {
             System.Diagnostics.Debug.WriteLine("Start service");
@@ -36,15 +31,6 @@ namespace BegunokApp.Droid.Services
                 context.StartService(intent);
                 isOn = true;
             }
-        }
-
-        internal static bool IsRunning
-        { 
-            get
-            {
-                return isOn;
-            }
-
         }
 
         internal static void StopService<T>(this Context context) where T : Service
